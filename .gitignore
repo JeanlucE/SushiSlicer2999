@@ -1,3 +1,28 @@
+
+# =============== #
+# Unity generated #
+# =============== #
+SushiSlicer2999/[Tt]emp/
+SushiSlicer2999/[Oo]bj/
+SushiSlicer2999/[Bb]uild
+SushiSlicer2999/[Ll]ibrary/
+sysinfo.txt
+*.stackdump
+ 
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+SushiSlicer2999/[Ee]xported[Oo]bj/
+.vs/
+/*.userprefs
+/*.csproj
+/*.pidb
+/*.suo
+/*.sln*
+/*.user
+/*.unityproj
+/*.booproj
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
