@@ -6,9 +6,9 @@ public class Knockout : MonoBehaviour {
     [Range(5f, 120f)]
     public float torpor;
 
-	void OnColliderEnter2D(Collision2D collision)
+	void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
             PlayerController.main.Knock(torpor);
             Destroy(gameObject);

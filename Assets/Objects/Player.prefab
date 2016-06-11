@@ -273,6 +273,7 @@ GameObject:
   - 114: {fileID: 11473030}
   - 82: {fileID: 8241524}
   - 58: {fileID: 5872356}
+  - 50: {fileID: 5022728}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -709,6 +710,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 409616}
   m_RootOrder: 0
+--- !u!50 &5022728
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189070}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!58 &5872356
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -908,7 +926,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 900fea0ae25be244a9127a0d3a16096c, type: 3}
   - {fileID: 8300000, guid: ec287cd64f3629b41b4262836efdf9dd, type: 3}
   - {fileID: 8300000, guid: 6f39247c6e559b8458f0867516025c01, type: 3}
-  recoverSpeed: 0
+  recoverSpeed: 30
 --- !u!114 &11422762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -936,7 +954,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishedComboEffect: {fileID: 19896208}
-  scoreCanvas: {fileID: 0}
   ComboTime: 2
   myComboList: []
   ComboSounds:
@@ -951,12 +968,10 @@ MonoBehaviour:
   - Ingredients:
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
-    ResultPrefab: {fileID: 0}
   - Ingredients:
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
-    ResultPrefab: {fileID: 0}
 --- !u!114 &11452548
 MonoBehaviour:
   m_ObjectHideFlags: 1

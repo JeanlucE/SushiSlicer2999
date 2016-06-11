@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerAnimationController animationControl;
 
+    private Rigidbody2D rb;
+
     public float recoverSpeed;
 
     private float knockTorpor;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animationControl = GetComponent<PlayerAnimationController>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Knock(float torporIncrease)
@@ -54,20 +57,15 @@ public class PlayerController : MonoBehaviour
 
         if (knockTorpor > 100)
         {
+            print(knockTorpor);
             knockedOut = true;
-
-            //animationControl.Knockout();
+            animationControl.Knockout();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown("x"))
-        {
-            this.Knock(111);
-        }*/
-
         if (knockTorpor > 0)
         {
             knockTorpor -= recoverSpeed * Time.deltaTime;
@@ -75,13 +73,13 @@ public class PlayerController : MonoBehaviour
 
         if (knockedOut)
         {
-            if (knockTorpor < 30)
+            if (knockTorpor < 20)
             {
-                knockedOut = true;
+                knockedOut = false;
+                animationControl.RecoverKnockout();
             }
 
             animationControl.UpdateKnockout(knockTorpor / 100.0f);
-            animationControl.RecoverKnockout();
         }
         else
         {
@@ -97,7 +95,8 @@ public class PlayerController : MonoBehaviour
                         float ySliceInput = Input.GetAxis("Controller1RY");
                         Vector2 sliceInput = new Vector2(xSliceInput, ySliceInput);
 
-                        transform.position += (Vector3)moveInput * MoveSpeed * Time.deltaTime;
+                        //transform.position += (Vector3)moveInput * MoveSpeed * Time.deltaTime;
+                        rb.velocity = (Vector3)moveInput * MoveSpeed;
 
 
                         //Only rotate player if we have movementinput
@@ -116,8 +115,10 @@ public class PlayerController : MonoBehaviour
                             swordState = SwordState.Unsheathed;
                             sliceStartTime = Time.time;
                             sliceDirection = lookDirection.normalized;
-                            sliceStartPosition = transform.position;
-                            sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
+                            //sliceStartPosition = transform.position;
+                            //sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
+                            sliceStartPosition = rb.position;
+                            sliceTargetPosition = rb.position + (SliceDistance * sliceDirection);
 
                             List<EnemyData> ingredientsSliced = new List<EnemyData>(); //sliced this frame
                             List<SliceInfo> sliceInfos = animationControl.Slice(sliceStartPosition, sliceTargetPosition);//slice objects
@@ -149,9 +150,8 @@ public class PlayerController : MonoBehaviour
                     {
                         float progress = (Time.time - sliceStartTime) / SliceTime;
 
-                        progress = SlicePositionCurve.Evaluate(progress);
-
-                        transform.position = Vector3.Lerp(sliceStartPosition, sliceTargetPosition, progress);
+                        //transform.position = Vector3.Lerp(sliceStartPosition, sliceTargetPosition, progress);
+                        rb.MovePosition(Vector2.Lerp(sliceStartPosition, sliceTargetPosition, progress));
 
                         if (Time.time > sliceStartTime + SliceTime)
                         {
@@ -165,8 +165,8 @@ public class PlayerController : MonoBehaviour
             //rotate player to face forward
             float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
             if (Mathf.Sign(lookDirection.x) == -1) { angletoRotate *= -1; }
-
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.LerpAngle(transform.eulerAngles.z, angletoRotate, Time.deltaTime * TurnSpeed));
+            rb.MoveRotation(Mathf.LerpAngle(rb.rotation, angletoRotate, Time.deltaTime * TurnSpeed));
+            //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.LerpAngle(transform.eulerAngles.z, angletoRotate, Time.deltaTime * TurnSpeed));
         }
 
         //Move Camera
