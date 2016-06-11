@@ -144,8 +144,7 @@ public class ComboList : MonoBehaviour
         foreach (Recipe r in recipes)
         {
             //remove recipe as many times as possible
-            
-                removed = r.RemoveFrom(unusedIngredients);
+            bool removed = r.RemoveFrom(unusedIngredients);
             //if the recipe was in the list add it to the list of combos
             if (removed)
             {
