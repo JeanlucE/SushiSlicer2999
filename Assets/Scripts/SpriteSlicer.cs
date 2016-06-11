@@ -15,19 +15,23 @@ public class SpriteSlicer : MonoBehaviour {
     private ClipperLib.ClipType clipType;
     private ClipperLib.Clipper clip = new ClipperLib.Clipper();
 
-    public static void SliceAll(Vector3 from, Vector3 to, float punch = 1.0f)
+    public static List<SliceInfo> SliceAll(Vector3 from, Vector3 to, float punch = 1.0f)
     {
-        Vector3 direction = to - from;
+        List<SliceInfo> hits = new List<SliceInfo>();
 
+        Vector3 direction = to - from;
         foreach (RaycastHit2D hit in Physics2D.LinecastAll(from, to, ~0))
         {
             SliceInfo info = hit.collider.GetComponent<SliceInfo>();
 
             if (info)
             {
+                hits.Add(info);
                 Slice(info, from, direction, punch);
             }
         }
+
+        return hits;
     }
 
     public static void Slice(SliceInfo sliceInfo, Vector3 start, Vector3 direction, float punch = 1.0f)
