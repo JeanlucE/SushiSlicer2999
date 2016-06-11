@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
                     Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
 
-                    /*
+                    
                     if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
                         lookDirection = moveInput;
 
@@ -71,8 +71,6 @@ public class PlayerController : MonoBehaviour
                     if (Mathf.Sign(lookDirection.x) == -1) { angletoRotate *= -1; }
 
                     transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.LerpAngle(transform.eulerAngles.z, angletoRotate, Time.deltaTime * TurnSpeed));
-
-                    */
                 }
                 break;
             case SwordState.Unsheathed:
