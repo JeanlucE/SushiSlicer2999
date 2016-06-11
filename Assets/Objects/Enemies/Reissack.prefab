@@ -13,8 +13,10 @@ GameObject:
   - 114: {fileID: 11417830}
   - 61: {fileID: 6149728}
   - 50: {fileID: 5094800}
+  - 114: {fileID: 11450774}
+  - 114: {fileID: 11490150}
   m_Layer: 0
-  m_Name: Lachs
+  m_Name: Reissack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +45,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e2dda5c675ebbbd4fbfc54cf63fdaf6e, type: 2}
+  - {fileID: 2100000, guid: cd2b04745fde58746a7bf5b51ff5e61c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -110,6 +112,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slicePrefab: {fileID: 165690, guid: 2f9f8102896699a47bc92d0024995c17, type: 2}
   insideSprite: {fileID: 21300000, guid: b12999a4cfd46c54cba2c9d35a1eab91, type: 3}
+  renderObject: {fileID: 0}
+  actions:
+  - {fileID: 11450774}
+--- !u!114 &11450774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192536}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6523cea2a47b3694e82534f1bd8a821e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 180988, guid: 7cf83ee038d27e2499a86bc0d9b6ab47, type: 2}
+--- !u!114 &11490150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4df082dfdb39d546a89c856aff432a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -123,6 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slicePrefab: {fileID: 165690, guid: 2f9f8102896699a47bc92d0024995c17, type: 2}
   insideSprite: {fileID: 21300000, guid: b12999a4cfd46c54cba2c9d35a1eab91, type: 3}
+  renderObject: {fileID: 0}
+  actions: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

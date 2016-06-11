@@ -44,7 +44,7 @@ MonoBehaviour:
   amount: 5
   size: 1
   radius: 2
-  rotationSpeed: 0.2
+  rotationSpeed: -0.2
   starSpeed: 0.3
 --- !u!1001 &100100000
 Prefab:
