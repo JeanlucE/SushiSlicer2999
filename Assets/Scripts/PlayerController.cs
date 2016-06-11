@@ -103,7 +103,14 @@ public class PlayerController : MonoBehaviour
 
                     //Only rotate player if we have movementinput
                     if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
+                    {
                         lookDirection = moveInput;
+                        animationControl.SetRunning(true);
+                    }
+                    else
+                    {
+                        animationControl.SetRunning(false);
+                    }
 
                     //rotate player to face forward
                     float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
@@ -126,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
                     if (Time.time > sliceStartTime + SliceTime && sliceInput.SqrMagnitude() < SheathePoint * SheathePoint)
                     {
+                        animationControl.SetSlice(false);
                         swordState = SwordState.Sheathed;
                     }
                 }
