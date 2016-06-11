@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController main;
 
+    public float CameraDistance;
     public float MoveSpeed;
     public float TurnSpeed;
     [Range(0, 1)]
@@ -113,6 +114,12 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    private Vector2 cameraTarget;
+    public void LateUpdate()
+    {
+
     }
 
     private enum SwordState { Sheathed, Unsheathed }
