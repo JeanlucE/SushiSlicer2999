@@ -13,8 +13,8 @@ public class ComboList : MonoBehaviour
             Instance = this;
     }
 
-    public float CurrentComboSum = 0;
-    public float CurrentComboMultiplier = 0;
+    private float CurrentComboSum = 0;
+    private float CurrentComboMultiplier = 0;
     public float ComboTime;
     public List<EnemyData> myComboList = new List<EnemyData>();
     public List<AudioClip> ComboSounds = new List<AudioClip>();
@@ -144,17 +144,14 @@ public class ComboList : MonoBehaviour
         foreach (Recipe r in recipes)
         {
             //remove recipe as many times as possible
-            bool removed = false;
-            do
-            {
+            
                 removed = r.RemoveFrom(unusedIngredients);
-                //if the recipe was in the list add it to the list of combos
-                if (removed)
-                {
-                    combos.Add(r);
-                    usedIngredients.AddRange(r.Ingredients);
-                }
-            } while (removed);
+            //if the recipe was in the list add it to the list of combos
+            if (removed)
+            {
+                combos.Add(r);
+                usedIngredients.AddRange(r.Ingredients);
+            }
         }
 
         //calculate points
@@ -169,6 +166,16 @@ public class ComboList : MonoBehaviour
         CurrentComboMultiplier = multiplier;
 
         return sum * multiplier;
+    }
+
+    public float GetMultiplier()
+    {
+        return CurrentComboMultiplier;
+    }
+
+    public float GetSum()
+    {
+        return CurrentComboSum;
     }
 
     public void ResolveCombo()
