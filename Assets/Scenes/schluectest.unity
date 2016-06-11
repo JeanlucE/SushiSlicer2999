@@ -489,27 +489,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 15
   TurnSpeed: 40
-  UnsheathePoint: 0.95
+  UnsheathePoint: 0.9
   SheathePoint: 0.6
-  SliceTime: 0.1
+  SliceTime: 0.15
   SlicePositionCurve:
     serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
-      inSlope: 1.974468
-      outSlope: 1.974468
-      tangentMode: 10
-    - time: 0.38931614
-      value: 0.76869226
-      inSlope: 1.1766182
-      outSlope: 1.1766182
-      tangentMode: 3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.5177555
+      value: 0.84681726
+      inSlope: 1.1913478
+      outSlope: 1.1913478
+      tangentMode: 0
     - time: 1
       value: 1
-      inSlope: 0.03175703
-      outSlope: 1
-      tangentMode: 1
+      inSlope: 0.21512224
+      outSlope: 0.21512224
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
