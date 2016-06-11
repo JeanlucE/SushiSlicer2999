@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerAnimationController : MonoBehaviour {
 
     public GameObject slicePrefab;
+    public Animator animator;
 
     public List<SliceInfo> Slice(Vector3 from, Vector3 to)
     {
@@ -16,7 +17,18 @@ public class PlayerAnimationController : MonoBehaviour {
             obj.transform.localPosition = from;
             obj.transform.localRotation = Quaternion.FromToRotation(Vector3.right, to - from);
         }
+        SetSlice(true);
 
         return info;
+    }
+    
+    public void SetRunning(bool running)
+    {
+        animator.SetBool("running", running);
+    }
+
+    public void SetSlice(bool slice)
+    {
+        animator.SetBool("slice", slice);
     }
 }
