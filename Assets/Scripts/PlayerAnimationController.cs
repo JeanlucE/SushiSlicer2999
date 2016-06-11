@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerAnimationController : MonoBehaviour {
 
     public GameObject slicePrefab;
 
-    public void Slice(Vector3 from, Vector3 to)
+    public List<SliceInfo> Slice(Vector3 from, Vector3 to)
     {
-        SpriteSlicer.SliceAll(from, to);
+        List<SliceInfo> info = SpriteSlicer.SliceAll(from, to);
 
         if (slicePrefab)
         {
@@ -15,6 +16,8 @@ public class PlayerAnimationController : MonoBehaviour {
             obj.transform.localPosition = from;
             obj.transform.localRotation = Quaternion.FromToRotation(Vector3.right, to - from);
         }
+
+        return info;
     }
 
 }
