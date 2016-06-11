@@ -7,29 +7,35 @@ public class ComboList: MonoBehaviour {
     public float CurrentComboSum = 0;
     public float CurrentComboMultiplier = 1;
 
-    public List<EnemyType> myComboList = new List<EnemyType>();
+    public List<EnemyData> myComboList = new List<EnemyData>();
 
     public List<Recipe> recipes = new List<Recipe>();
     [System.Serializable]
     public class Recipe
     {
-        public EnemyType[] Ingredients;
+        public EnemyData[] Ingredients;
         public float PointScore
         {
             get
             {
-                return 1;
+                float sum = 0;
+                foreach(EnemyData e in Ingredients)
+                {
+                    sum += e.score;
+                }
+
+                return sum;
             }
         }
 
-        private bool IsContainedIn(List<EnemyType> list)
+        private bool IsContainedIn(List<EnemyData> list)
         {
             if(list == null || Ingredients == null || Ingredients.Length > list.Count)
             {
                 return false;
             }
 
-            foreach(EnemyType e in Ingredients)
+            foreach(EnemyData e in Ingredients)
             {
                 if (list.Contains(e))
                 {
@@ -45,12 +51,12 @@ public class ComboList: MonoBehaviour {
         }
 
         //checks if recipe is in list fully and removes it, order is not important
-        public bool RemoveFrom(List<EnemyType> list)
+        public bool RemoveFrom(List<EnemyData> list)
         {
-            List<EnemyType> copy = new List<EnemyType>(list);
+            List<EnemyData> copy = new List<EnemyData>(list);
             if (IsContainedIn(copy))
             {
-                foreach (EnemyType e in Ingredients)
+                foreach (EnemyData e in Ingredients)
                 {
                     list.Remove(e);
                 }
@@ -96,17 +102,17 @@ public class ComboList: MonoBehaviour {
         //ResolveCombo();
     }
 
-    public void AddIngredient(EnemyType enemyType)
+    public void AddIngredient(EnemyData enemyData)
     {
-        myComboList.Add(enemyType);
+        myComboList.Add(enemyData);
     }
 
     public float ResolveCombo()
     {
         bool comboResolved = false;
-        List<EnemyType> usedIngredients = new List<EnemyType>(myComboList.Count);
-        List<EnemyType> unusedIngredients = new List<EnemyType>(myComboList);
-        List<EnemyType> lastIngredients = new List<EnemyType>(myComboList.Count);
+        List<EnemyData> usedIngredients = new List<EnemyData>(myComboList.Count);
+        List<EnemyData> unusedIngredients = new List<EnemyData>(myComboList);
+        List<EnemyData> lastIngredients = new List<EnemyData>(myComboList.Count);
         List<Recipe> combos = new List<Recipe>();
 
         while(!comboResolved)
