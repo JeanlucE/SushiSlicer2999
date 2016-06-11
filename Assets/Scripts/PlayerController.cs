@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
     private PlayerAnimationController animationControl;
 
+    public float recoverSpeed;
+
+    private float knockTorpor;
+    private bool knockedOut;
+
     void Awake()
     {
         main = this;
@@ -43,92 +48,126 @@ public class PlayerController : MonoBehaviour
         animationControl = GetComponent<PlayerAnimationController>();
     }
 
+    public void Knock(float torporIncrease)
+    {
+        knockTorpor += torporIncrease;
+
+        if (knockTorpor > 100)
+        {
+            knockedOut = true;
+
+            //animationControl.Knockout();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-
-        switch (swordState)
+        /*if (Input.GetKeyDown("x"))
         {
-            case SwordState.Sheathed:
-                {
-                    float xMoveInput = Input.GetAxis("Controller1LX");
-                    float yMoveInput = Input.GetAxis("Controller1LY");
-                    Vector2 moveInput = new Vector3(xMoveInput, yMoveInput).normalized;
+            this.Knock(111);
+        }*/
 
-                    float xSliceInput = Input.GetAxis("Controller1RX");
-                    float ySliceInput = Input.GetAxis("Controller1RY");
-                    Vector2 sliceInput = new Vector2(xSliceInput, ySliceInput);
-                    
-                    transform.position += (Vector3) moveInput * MoveSpeed * Time.deltaTime;
-
-
-                    //Only rotate player if we have movementinput
-                    if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
-                    {
-                        lookDirection = moveInput.normalized;
-                        animationControl.SetRunning(true);
-                    }
-                    else
-                    {
-                        animationControl.SetRunning(false);
-                    }
-                    
-                    if (Input.GetButtonDown("Controller1A"))
-                    {
-                        swordState = SwordState.Unsheathed;
-                        sliceStartTime = Time.time;
-                        sliceDirection = lookDirection.normalized;
-                        sliceStartPosition = transform.position;
-                        sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
-
-                        List<EnemyData> ingredientsSliced = new List<EnemyData>(); //sliced this frame
-                        List<SliceInfo> sliceInfos = animationControl.Slice(sliceStartPosition, sliceTargetPosition);//slice objects
-                        foreach (SliceInfo s in sliceInfos)
-                        {
-                            EnemyScript e = s.gameObject.GetComponent<EnemyScript>();
-                            if (e != null)
-                            {
-                                ingredientsSliced.Add(e.type);
-                                ComboList.Instance.AddIngredient(e.type);
-                            }
-                        }
-                        lookDirection = sliceDirection;
-
-                        //Do sound effect
-                        int random = UnityEngine.Random.Range(0, SliceSounds.Count);
-                        SoundEffectManager.Instance.CreateSoundEffect(SliceSounds[random]);
-
-                        random = UnityEngine.Random.Range(0, SamuraiSounds.Count);
-                        SoundEffectManager.Instance.CreateSoundEffect(SamuraiSounds[random]);
-
-                        //Debug.DrawRay(transform.position, (Vector3)(SliceDistance * sliceDirection), Color.red, 2);
-                    }
-
-                    //Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
-                }
-                break;
-            case SwordState.Unsheathed:
-                {
-                    float progress = (Time.time - sliceStartTime) / SliceTime;
-
-                    progress = SlicePositionCurve.Evaluate(progress);
-
-                    transform.position = Vector3.Lerp(sliceStartPosition, sliceTargetPosition, progress);
-
-                    if (Time.time > sliceStartTime + SliceTime)
-                    {
-                        animationControl.SetSlice(false);
-                        swordState = SwordState.Sheathed;
-                    }
-                }
-                break;
+        if (knockTorpor > 0)
+        {
+            knockTorpor -= recoverSpeed * Time.deltaTime;
         }
 
-        //rotate player to face forward
-        float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
-        if (Mathf.Sign(lookDirection.x) == -1) { angletoRotate *= -1; }
+        if (knockedOut)
+        {
+            if (knockTorpor < 30)
+            {
+                knockedOut = true;
+            }
 
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.LerpAngle(transform.eulerAngles.z, angletoRotate, Time.deltaTime * TurnSpeed));
+            animationControl.UpdateKnockout(knockTorpor / 100.0f);
+            animationControl.RecoverKnockout();
+        }
+        else
+        {
+            switch (swordState)
+            {
+                case SwordState.Sheathed:
+                    {
+                        float xMoveInput = Input.GetAxis("Controller1LX");
+                        float yMoveInput = Input.GetAxis("Controller1LY");
+                        Vector2 moveInput = new Vector3(xMoveInput, yMoveInput).normalized;
+
+                        float xSliceInput = Input.GetAxis("Controller1RX");
+                        float ySliceInput = Input.GetAxis("Controller1RY");
+                        Vector2 sliceInput = new Vector2(xSliceInput, ySliceInput);
+
+                        transform.position += (Vector3)moveInput * MoveSpeed * Time.deltaTime;
+
+
+                        //Only rotate player if we have movementinput
+                        if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
+                        {
+                            lookDirection = moveInput.normalized;
+                            animationControl.SetRunning(true);
+                        }
+                        else
+                        {
+                            animationControl.SetRunning(false);
+                        }
+
+                        if (Input.GetButtonDown("Controller1A"))
+                        {
+                            swordState = SwordState.Unsheathed;
+                            sliceStartTime = Time.time;
+                            sliceDirection = lookDirection.normalized;
+                            sliceStartPosition = transform.position;
+                            sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
+
+                            List<EnemyData> ingredientsSliced = new List<EnemyData>(); //sliced this frame
+                            List<SliceInfo> sliceInfos = animationControl.Slice(sliceStartPosition, sliceTargetPosition);//slice objects
+                            foreach (SliceInfo s in sliceInfos)
+                            {
+                                EnemyScript e = s.gameObject.GetComponent<EnemyScript>();
+                                if (e != null)
+                                {
+                                    ingredientsSliced.Add(e.type);
+                                    ComboList.Instance.AddIngredient(e.type);
+                                }
+                            }
+                            lookDirection = sliceDirection;
+
+                            //Do sound effect
+                            int random = UnityEngine.Random.Range(0, SliceSounds.Count);
+                            SoundEffectManager.Instance.CreateSoundEffect(SliceSounds[random]);
+
+                            random = UnityEngine.Random.Range(0, SamuraiSounds.Count);
+                            SoundEffectManager.Instance.CreateSoundEffect(SamuraiSounds[random]);
+
+                            //Debug.DrawRay(transform.position, (Vector3)(SliceDistance * sliceDirection), Color.red, 2);
+                        }
+
+                        //Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
+                    }
+                    break;
+                case SwordState.Unsheathed:
+                    {
+                        float progress = (Time.time - sliceStartTime) / SliceTime;
+
+                        progress = SlicePositionCurve.Evaluate(progress);
+
+                        transform.position = Vector3.Lerp(sliceStartPosition, sliceTargetPosition, progress);
+
+                        if (Time.time > sliceStartTime + SliceTime)
+                        {
+                            animationControl.SetSlice(false);
+                            swordState = SwordState.Sheathed;
+                        }
+                    }
+                    break;
+            }
+
+            //rotate player to face forward
+            float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
+            if (Mathf.Sign(lookDirection.x) == -1) { angletoRotate *= -1; }
+
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.LerpAngle(transform.eulerAngles.z, angletoRotate, Time.deltaTime * TurnSpeed));
+        }
 
         //Move Camera
         cameraTarget = transform.position + (Vector3)lookDirection * CameraDistance;
