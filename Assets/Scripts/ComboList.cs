@@ -7,6 +7,7 @@ public class ComboList : MonoBehaviour
 {
     public static ComboList Instance;
     public ParticleSystem finishedComboEffect;
+    public ScoreCanvas scoreCanvas;
    
     public void Awake()
     {
@@ -26,6 +27,7 @@ public class ComboList : MonoBehaviour
     public class Recipe
     {
         public EnemyData[] Ingredients;
+        public GameObject ResultPrefab;
         public float PointScore
         {
             get
@@ -132,6 +134,8 @@ public class ComboList : MonoBehaviour
 
         //check for a combo and remove those ingredients
         CheckCombo();
+
+        scoreCanvas.IngredientsChanged(true);
     }
 
     private void CheckCombo()
