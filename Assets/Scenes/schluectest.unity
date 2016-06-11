@@ -621,6 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentComboSum: 0
   CurrentComboMultiplier: 1
+  ComboTime: 2
   myComboList: []
   recipes:
   - Ingredients:

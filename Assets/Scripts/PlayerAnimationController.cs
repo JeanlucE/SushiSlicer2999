@@ -19,5 +19,4 @@ public class PlayerAnimationController : MonoBehaviour {
 
         return info;
     }
-
 }

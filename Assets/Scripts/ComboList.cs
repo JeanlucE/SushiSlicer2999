@@ -14,8 +14,8 @@ public class ComboList : MonoBehaviour
     }
 
     public float CurrentComboSum = 0;
-    public float CurrentComboMultiplier = 1;
-
+    public float CurrentComboMultiplier = 0;
+    public float ComboTime;
     public List<EnemyData> myComboList = new List<EnemyData>();
 
     public List<Recipe> recipes = new List<Recipe>();
@@ -101,6 +101,8 @@ public class ComboList : MonoBehaviour
         }
     }
 
+    private float timeOfLastIngredient;
+
     public void Start()
     {
         recipes.Sort(new RecipeSorter());
@@ -108,21 +110,27 @@ public class ComboList : MonoBehaviour
 
     public void Update()
     {
-        ResolveCombo();
+        float points = CheckCombo();
+
+        //we have ingredients and time has run out
+        if (myComboList.Count > 0 && timeOfLastIngredient + ComboTime < Time.time)
+        {
+            ResolveCombo();
+            Debug.Log("Combo: " + points + " points!");
+        }
     }
 
     public void AddIngredient(EnemyData enemyData)
     {
         myComboList.Add(enemyData);
         Debug.Log("Ingredient added!");
+        timeOfLastIngredient = Time.time;
     }
 
-    public float ResolveCombo()
+    public float CheckCombo()
     {
-        bool comboResolved = false;
         List<EnemyData> usedIngredients = new List<EnemyData>(myComboList.Count);
         List<EnemyData> unusedIngredients = new List<EnemyData>(myComboList);
-        List<EnemyData> lastIngredients = new List<EnemyData>(myComboList.Count);
         List<Recipe> combos = new List<Recipe>();
 
         //check each recipes ingredients
@@ -156,8 +164,15 @@ public class ComboList : MonoBehaviour
         return sum * multiplier;
     }
 
+    public void ResolveCombo()
+    {
+        myComboList.Clear();
+    }
+
     public void OnGUI()
     {
+        float timeToCombo = timeOfLastIngredient + ComboTime - Time.time;
         GUI.Label(new Rect(Screen.width - 100, 50, 100, 100), CurrentComboSum + " x " + CurrentComboMultiplier);
+        GUI.Label(new Rect(Screen.width - 100, 70, 100, 100), "Time to combo: " + timeToCombo);
     }
 }

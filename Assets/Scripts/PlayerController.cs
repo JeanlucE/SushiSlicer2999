@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public float SliceTime;
     public AnimationCurve SlicePositionCurve;
     public float SliceDistance;
-    
 
     private SwordState swordState = SwordState.Sheathed;
     private float sliceStartTime;
@@ -57,13 +56,12 @@ public class PlayerController : MonoBehaviour
                         sliceDirection = sliceInput.normalized;
                         sliceStartPosition = transform.position;
                         sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
-
-                       
+                        
                         List<EnemyData> ingredientsSliced = new List<EnemyData>(); //sliced this frame
                         List<SliceInfo> sliceInfos = animationControl.Slice(sliceStartPosition, sliceTargetPosition);//slice objects
                         foreach (SliceInfo s in sliceInfos)
                         {
-                            EnemyScript e = s.slicePrefab.gameObject.GetComponent<EnemyScript>();
+                            EnemyScript e = s.gameObject.GetComponent<EnemyScript>();
                             if(e != null)
                             {
                                 ingredientsSliced.Add(e.type);
@@ -71,15 +69,14 @@ public class PlayerController : MonoBehaviour
                             }
                         }
                         
-
                         Debug.DrawRay(transform.position, (Vector3) (SliceDistance * sliceDirection),  Color.red, 2);
                     }
                     //press "A" button
-                    else if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+                    if (Input.GetButtonDown("Controller1A"))
                     {
                         swordState = SwordState.Unsheathed;
                         sliceStartTime = Time.time;
-                        sliceDirection = moveInput.normalized;
+                        sliceDirection = lookDirection.normalized;
                         sliceStartPosition = transform.position;
                         sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
 
@@ -100,10 +97,11 @@ public class PlayerController : MonoBehaviour
 
                     Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
 
-                    
+                    //Only rotate player if we have movementinput
                     if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
                         lookDirection = moveInput;
 
+                    //rotate player to face forward
                     float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
                     if (Mathf.Sign(lookDirection.x) == -1) { angletoRotate *= -1; }
 
