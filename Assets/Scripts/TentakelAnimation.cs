@@ -3,40 +3,56 @@ using System.Collections;
 
 public class TentakelAnimation : MonoBehaviour {
 
-    public Renderer[] renderers;
+    public Renderer tentakel;
+    public Texture[] textures;
+
+    public float unravelOffset;
     public float swapTime;
 
-    Coroutine cr;
+    private Material material;
+    private Coroutine cr, cr2;
 
 	void Start ()
     {
-        foreach (Renderer r in renderers)
-        {
-            r.enabled = false;
-        }
-
+        material = tentakel.material;
         cr = StartCoroutine(Animate());
+        cr2 = StartCoroutine(Unravel());
 	}
 
     void OnDisable()
     {
         StopCoroutine(cr);
+        StopCoroutine(cr2);
+    }
+
+    IEnumerator Unravel()
+    {
+        float speed = -9 / 4f;
+        float pos = unravelOffset;
+        
+        while (this && pos > 0)
+        {
+            yield return new WaitForEndOfFrame();
+
+            pos += speed * Time.deltaTime;
+            material.SetFloat("_Clip", pos);
+        }
     }
 
     IEnumerator Animate()
     {
-        int lastIndex = renderers.Length - 1;
-        int index = 0;
-
-        while (this)
+        if (textures.Length > 0)
         {
-            renderers[lastIndex].enabled = false;
-            renderers[index].enabled = true;
+            int index = Random.Range(0, textures.Length);
 
-            lastIndex = index;
-            index = (index + 1) % renderers.Length;
+            yield return new WaitForSeconds(Random.Range(0, swapTime));
+            while (this)
+            {
+                material.mainTexture = textures[index];
+                index = (index + 1) % textures.Length;
 
-            yield return new WaitForSeconds(swapTime);
+                yield return new WaitForSeconds(swapTime);
+            }
         }
     }
 

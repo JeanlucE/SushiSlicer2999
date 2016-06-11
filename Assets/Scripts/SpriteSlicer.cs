@@ -24,7 +24,7 @@ public class SpriteSlicer : MonoBehaviour {
         {
             SliceInfo info = hit.collider.GetComponent<SliceInfo>();
 
-            if (info)
+            if (info && info.enabled)
             {
                 hits.Add(info);
                 Slice(info, from, direction, punch);
@@ -93,7 +93,7 @@ public class SpriteSlicer : MonoBehaviour {
         quad.Add(new Vector2(0.5f, -0.5f));*/
 
 
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
+        Mesh mesh = this.sliceInfo.renderObject.GetComponent<MeshFilter>().mesh;
 
         int n = 0;
         List<Vector2> quad = new List<Vector2>();
@@ -158,7 +158,7 @@ public class SpriteSlicer : MonoBehaviour {
 
         GameObject obj = GameObject.Instantiate<GameObject>(sliceInfo.slicePrefab);
         obj.GetComponent<MeshFilter>().mesh = mesh;
-        obj.GetComponent<MeshRenderer>().material = GetComponent<MeshRenderer>().material;
+        obj.GetComponent<MeshRenderer>().material = sliceInfo.renderObject.material;
 
         Transform t = obj.transform;
         t.localPosition = transform.localPosition;

@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11417830}
   - 61: {fileID: 6149728}
   - 50: {fileID: 5094800}
+  - 114: {fileID: 11429032}
   m_Layer: 0
   m_Name: Alge
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.457, y: -0.364, z: 0}
+  m_LocalPosition: {x: -21.06, y: 4.53, z: 0}
   m_LocalScale: {x: 3.4132018, y: 3.4132032, z: 3.4132032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -110,6 +111,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slicePrefab: {fileID: 165690, guid: 2f9f8102896699a47bc92d0024995c17, type: 2}
   insideSprite: {fileID: 21300000, guid: b12999a4cfd46c54cba2c9d35a1eab91, type: 3}
+  actions: []
+--- !u!114 &11429032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843c29f1b6e4c024eb4ec4729eea2090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouthPosition: {x: 0, y: 0, z: 0}
+  tentakelPrefab: {fileID: 172346, guid: b26bcdfde894ba647ab762a9df692e15, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
