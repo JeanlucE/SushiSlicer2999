@@ -6,6 +6,7 @@ public class PlayerAnimationController : MonoBehaviour {
 
     public GameObject slicePrefab;
     public Animator animator;
+    public TrailRenderer swordTrail;
 
     public List<SliceInfo> Slice(Vector3 from, Vector3 to)
     {
@@ -31,5 +32,15 @@ public class PlayerAnimationController : MonoBehaviour {
     public void SetSlice(bool slice)
     {
         animator.SetBool("slice", slice);
+
+        //enable/disable sword trail
+        if (slice) { swordTrail.enabled = true; }
+        else { StartCoroutine(disableSwordTrail(0.1f)); }
+    }
+
+    private IEnumerator disableSwordTrail(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        swordTrail.enabled = false;
     }
 }
