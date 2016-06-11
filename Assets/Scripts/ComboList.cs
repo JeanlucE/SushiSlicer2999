@@ -6,6 +6,7 @@ using System;
 public class ComboList : MonoBehaviour
 {
     public static ComboList Instance;
+    public ParticleSystem finishedComboEffect;
    
     public void Awake()
     {
@@ -123,7 +124,7 @@ public class ComboList : MonoBehaviour
     public void AddIngredient(EnemyData enemyData)
     {
         myComboList.Add(enemyData);
-        Debug.Log("Ingredient added!");
+        
         timeOfLastIngredient = Time.time;
 
         //add points of this object
@@ -173,7 +174,9 @@ public class ComboList : MonoBehaviour
         CurrentComboSum = 0;
         CurrentComboMultiplier = 1;
 
-        Debug.Log("combo resolved");
+        //petal effect
+        finishedComboEffect.Play();
+        Debug.Log("Combo resolved");
     }
 
     public void OnGUI()
