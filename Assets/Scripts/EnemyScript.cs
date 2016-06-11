@@ -14,8 +14,10 @@ public class EnemyScript : MonoBehaviour {
 	    switch(type)
         {
             case EnemyType.Fish:
-                //movement
-                //shooting
+                {
+                    //movement
+                    //shooting
+                }
                 break;
             case EnemyType.Rice:
                 {
@@ -31,9 +33,9 @@ public class EnemyScript : MonoBehaviour {
                 break;
         }
 	}
+}
 
-    public enum EnemyType
-    {
-        Fish, Rice
-    }
+public enum EnemyType
+{
+    Fish, Rice
 }
