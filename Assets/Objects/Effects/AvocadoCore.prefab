@@ -98,7 +98,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
 --- !u!96 &9648314
 TrailRenderer:
   m_ObjectHideFlags: 1
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a5ad9ff5adb3542aa3c3d76bf77a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torpor: 111
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

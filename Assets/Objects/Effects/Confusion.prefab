@@ -42,8 +42,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 435162, guid: a86f836079b2c074da56a4c0466c8517, type: 2}
   amount: 5
-  size: 1
-  radius: 2
+  size: 1.8
+  radius: 2.4
   rotationSpeed: -0.2
   starSpeed: 0.3
 --- !u!1001 &100100000

@@ -54,20 +54,15 @@ public class PlayerController : MonoBehaviour
 
         if (knockTorpor > 100)
         {
+            print(knockTorpor);
             knockedOut = true;
-
-            //animationControl.Knockout();
+            animationControl.Knockout();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown("x"))
-        {
-            this.Knock(111);
-        }*/
-
         if (knockTorpor > 0)
         {
             knockTorpor -= recoverSpeed * Time.deltaTime;
@@ -75,13 +70,13 @@ public class PlayerController : MonoBehaviour
 
         if (knockedOut)
         {
-            if (knockTorpor < 30)
+            if (knockTorpor < 20)
             {
-                knockedOut = true;
+                knockedOut = false;
+                animationControl.RecoverKnockout();
             }
 
             animationControl.UpdateKnockout(knockTorpor / 100.0f);
-            animationControl.RecoverKnockout();
         }
         else
         {
