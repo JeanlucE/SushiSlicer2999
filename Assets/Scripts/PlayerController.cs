@@ -48,6 +48,18 @@ public class PlayerController : MonoBehaviour
                     
                     transform.position += (Vector3) moveInput * MoveSpeed * Time.deltaTime;
 
+
+                    //Only rotate player if we have movementinput
+                    if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
+                    {
+                        lookDirection = moveInput;
+                        animationControl.SetRunning(true);
+                    }
+                    else
+                    {
+                        animationControl.SetRunning(false);
+                    }
+
                     //slice with right stick
                     if (sliceInput.SqrMagnitude() > UnsheathePoint * UnsheathePoint)
                     {
@@ -68,6 +80,7 @@ public class PlayerController : MonoBehaviour
                                 ComboList.Instance.AddIngredient(e.type);
                             }
                         }
+                        lookDirection = sliceDirection;
                         
                         Debug.DrawRay(transform.position, (Vector3) (SliceDistance * sliceDirection),  Color.red, 2);
                     }
@@ -91,22 +104,12 @@ public class PlayerController : MonoBehaviour
                                 ComboList.Instance.AddIngredient(e.type);
                             }
                         }
+                        lookDirection = sliceDirection;
 
                         Debug.DrawRay(transform.position, (Vector3)(SliceDistance * sliceDirection), Color.red, 2);
                     }
 
                     Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
-
-                    //Only rotate player if we have movementinput
-                    if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
-                    {
-                        lookDirection = moveInput;
-                        animationControl.SetRunning(true);
-                    }
-                    else
-                    {
-                        animationControl.SetRunning(false);
-                    }
 
                     //rotate player to face forward
                     float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
@@ -121,7 +124,7 @@ public class PlayerController : MonoBehaviour
 
                     progress = SlicePositionCurve.Evaluate(progress);
 
-                    transform.position = Vector2.Lerp(sliceStartPosition, sliceTargetPosition, progress);
+                    transform.position = Vector3.Lerp(sliceStartPosition, sliceTargetPosition, progress);
 
                     float xSliceInput = Input.GetAxis("Controller1RX");
                     float ySliceInput = Input.GetAxis("Controller1RY");
