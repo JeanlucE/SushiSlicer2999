@@ -18,6 +18,8 @@ public class PlayerAnimationController : MonoBehaviour {
             obj.transform.localRotation = Quaternion.FromToRotation(Vector3.right, to - from);
         }
 
+        SetSlice(true);
+
         return info;
     }
 

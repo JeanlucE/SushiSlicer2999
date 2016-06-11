@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
                     //Only rotate player if we have movementinput
                     if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
                     {
-                        lookDirection = moveInput;
+                        lookDirection = moveInput.normalized;
                         animationControl.SetRunning(true);
                     }
                     else
@@ -119,7 +119,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 cameraTarget;
     public void LateUpdate()
     {
-        
+        cameraTarget = transform.position + (Vector3) lookDirection * CameraDistance;
+
+        //Camera.main.transform.position = Vector3.Lerp()
     }
 
     private enum SwordState { Sheathed, Unsheathed }
