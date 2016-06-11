@@ -63,32 +63,7 @@ public class PlayerController : MonoBehaviour
                     {
                         animationControl.SetRunning(false);
                     }
-
-                    //slice with right stick
-                    if (sliceInput.SqrMagnitude() > UnsheathePoint * UnsheathePoint)
-                    {
-                        swordState = SwordState.Unsheathed;
-                        sliceStartTime = Time.time;
-                        sliceDirection = sliceInput.normalized;
-                        sliceStartPosition = transform.position;
-                        sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
-                        
-                        List<EnemyData> ingredientsSliced = new List<EnemyData>(); //sliced this frame
-                        List<SliceInfo> sliceInfos = animationControl.Slice(sliceStartPosition, sliceTargetPosition);//slice objects
-                        foreach (SliceInfo s in sliceInfos)
-                        {
-                            EnemyScript e = s.gameObject.GetComponent<EnemyScript>();
-                            if(e != null)
-                            {
-                                ingredientsSliced.Add(e.type);
-                                ComboList.Instance.AddIngredient(e.type);
-                            }
-                        }
-                        lookDirection = sliceDirection;
-                        
-                        Debug.DrawRay(transform.position, (Vector3) (SliceDistance * sliceDirection),  Color.red, 2);
-                    }
-                    //press "A" button
+                    
                     if (Input.GetButtonDown("Controller1A"))
                     {
                         swordState = SwordState.Unsheathed;
@@ -130,11 +105,7 @@ public class PlayerController : MonoBehaviour
 
                     transform.position = Vector3.Lerp(sliceStartPosition, sliceTargetPosition, progress);
 
-                    float xSliceInput = Input.GetAxis("Controller1RX");
-                    float ySliceInput = Input.GetAxis("Controller1RY");
-                    Vector2 sliceInput = new Vector2(xSliceInput, ySliceInput);
-
-                    if (Time.time > sliceStartTime + SliceTime && sliceInput.SqrMagnitude() < SheathePoint * SheathePoint)
+                    if (Time.time > sliceStartTime + SliceTime)
                     {
                         animationControl.SetSlice(false);
                         swordState = SwordState.Sheathed;
@@ -142,23 +113,6 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    void OnGUI()
-    {
-        GUI.BeginGroup(new Rect(20, 20, 100, 100));
-        GUI.Box(new Rect(0, 0, 100, 100), "");
-
-        GUI.Box(new Rect(50 - 2, 50 - 2, 4, 4), "");
-
-        GUI.Box(new Rect(
-            50 + 20 * Input.GetAxis("Controller1RX") - 2,
-            50 - 20 * Input.GetAxis("Controller1RY") - 2,
-            4,
-            4
-        ), "");
-
-        GUI.EndGroup();
     }
 
     private enum SwordState { Sheathed, Unsheathed }
