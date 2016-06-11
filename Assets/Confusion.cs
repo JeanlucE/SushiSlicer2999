@@ -18,6 +18,7 @@ public class Confusion : MonoBehaviour {
 
 	void Start ()
     {
+        childs = new Transform[0];
         Rebuild();
 	}
 
@@ -53,10 +54,25 @@ public class Confusion : MonoBehaviour {
         transform.localRotation = Quaternion.AngleAxis(rotation, Vector3.forward);
 
         starRotation += 360 * starSpeed * Time.deltaTime;
-        Quaternion star = Quaternion.AngleAxis(rotation, Vector3.forward);
+        Quaternion star = Quaternion.AngleAxis(starRotation, Vector3.forward);
         foreach (Transform t in childs)
         {
             t.localRotation = star;
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+        Vector3 position = Vector3.up * radius;
+
+        childs = new Transform[amount];
+
+        float wdelta = 360 / amount;
+        for (int i = 0; i < amount; i++)
+        {
+            Vector3 circlePosition = transform.position + transform.rotation * Quaternion.AngleAxis(wdelta * i, Vector3.forward) * position;
+            Gizmos.DrawWireSphere(circlePosition, size * 0.3f);
         }
     }
 }

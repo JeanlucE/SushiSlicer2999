@@ -880,6 +880,18 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -17.3036
       objectReference: {fileID: 0}
+    - target: {fileID: 11401980, guid: a91f2c74c8a64b347b187be98c4cf83b, type: 2}
+      propertyPath: rotationSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401980, guid: a91f2c74c8a64b347b187be98c4cf83b, type: 2}
+      propertyPath: size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401980, guid: a91f2c74c8a64b347b187be98c4cf83b, type: 2}
+      propertyPath: starSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a91f2c74c8a64b347b187be98c4cf83b, type: 2}
   m_IsPrefabParent: 0
