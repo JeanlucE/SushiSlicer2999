@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 cameraTarget;
     public void LateUpdate()
     {
-
+        
     }
 
     private enum SwordState { Sheathed, Unsheathed }
