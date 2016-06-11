@@ -8,6 +8,9 @@ public class PlayerAnimationController : MonoBehaviour {
     public Animator animator;
     public TrailRenderer swordTrail;
 
+    public Confusion confusionPrefab;
+    private Confusion confusionInstance;
+
     public List<SliceInfo> Slice(Vector3 from, Vector3 to)
     {
         List<SliceInfo> info = SpriteSlicer.SliceAll(from, to);
@@ -43,4 +46,28 @@ public class PlayerAnimationController : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         swordTrail.enabled = false;
     }
+
+    public void Knockout()
+    {
+        confusionInstance = GameObject.Instantiate<Confusion>(confusionPrefab);
+        confusionInstance.transform.parent = transform;
+        confusionInstance.transform.localPosition = Vector3.zero;
+    }
+
+    public void UpdateKnockout(float value)
+    {
+        if (confusionInstance)
+        {
+            confusionInstance.size = value * confusionPrefab.size;
+        }
+    }
+
+    public void RecoverKnockout()
+    {
+        if (confusionInstance)
+        {
+            Destroy(confusionInstance.gameObject);
+        }
+    }
+
 }
