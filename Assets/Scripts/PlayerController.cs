@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController main;
 
     public float CameraDistance;
+    public float CameraSpeed;
     public float MoveSpeed;
     public float TurnSpeed;
     [Range(0, 1)]
@@ -90,12 +91,6 @@ public class PlayerController : MonoBehaviour
                     }
 
                     Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
-
-                    //rotate player to face forward
-                    float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
-                    if (Mathf.Sign(lookDirection.x) == -1) { angletoRotate *= -1; }
-
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.LerpAngle(transform.eulerAngles.z, angletoRotate, Time.deltaTime * TurnSpeed));
                 }
                 break;
             case SwordState.Unsheathed:
@@ -114,15 +109,25 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
+
+        //rotate player to face forward
+        float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
+        if (Mathf.Sign(lookDirection.x) == -1) { angletoRotate *= -1; }
+
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.LerpAngle(transform.eulerAngles.z, angletoRotate, Time.deltaTime * TurnSpeed));
+
+        //Move Camera
+        cameraTarget = transform.position + (Vector3)lookDirection * CameraDistance;
+
+        Vector3 currentPosition = Camera.main.transform.position;
+
+        cameraTarget = new Vector3(cameraTarget.x, cameraTarget.y - 2, currentPosition.z);
+
+        Camera.main.transform.position = Vector3.SmoothDamp(currentPosition, cameraTarget, ref cameraVelocity, CameraSpeed);
     }
 
-    private Vector2 cameraTarget;
-    public void LateUpdate()
-    {
-        cameraTarget = transform.position + (Vector3) lookDirection * CameraDistance;
-
-        //Camera.main.transform.position = Vector3.Lerp()
-    }
+    private Vector3 cameraTarget;
+    private Vector3 cameraVelocity;
 
     private enum SwordState { Sheathed, Unsheathed }
 }

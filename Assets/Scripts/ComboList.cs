@@ -17,6 +17,7 @@ public class ComboList : MonoBehaviour
     public float CurrentComboMultiplier = 0;
     public float ComboTime;
     public List<EnemyData> myComboList = new List<EnemyData>();
+    public List<AudioClip> ComboSounds = new List<AudioClip>();
 
     public List<Recipe> recipes = new List<Recipe>();
     [System.Serializable]
@@ -112,11 +113,15 @@ public class ComboList : MonoBehaviour
     {
         float points = CheckCombo();
 
-        //we have ingredients and time has run out
+        //we have ingredients and time has run out and
         if (myComboList.Count > 0 && timeOfLastIngredient + ComboTime < Time.time)
         {
+            if(points > 0)
+            {
+
+            }
+
             ResolveCombo();
-            Debug.Log("Combo: " + points + " points!");
         }
     }
 

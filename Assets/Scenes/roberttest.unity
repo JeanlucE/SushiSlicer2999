@@ -124,14 +124,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 493840, guid: da640f097f76bef47afeb37363a0697b, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 11422762, guid: da640f097f76bef47afeb37363a0697b, type: 2}
-      propertyPath: swordTrail
-      value: 
-      objectReference: {fileID: 1164085750}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da640f097f76bef47afeb37363a0697b, type: 2}
   m_IsPrefabParent: 0
@@ -204,10 +196,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &294309881 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 439974, guid: da640f097f76bef47afeb37363a0697b, type: 2}
-  m_PrefabInternal: {fileID: 194472586}
 --- !u!1001 &543603345
 Prefab:
   m_ObjectHideFlags: 0
@@ -477,81 +465,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
---- !u!1 &1164085748
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1164085749}
-  - 96: {fileID: 1164085750}
-  m_Layer: 0
-  m_Name: sword trail
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1164085749
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1164085748}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0005, y: 0.023, z: 0.0052}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 294309881}
-  m_RootOrder: 0
---- !u!96 &1164085750
-TrailRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1164085748}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Time: 0.1
-  m_StartWidth: 1
-  m_EndWidth: 1
-  m_Colors:
-    m_Color[0]:
-      serializedVersion: 2
-      rgba: 3590324223
-    m_Color[1]:
-      serializedVersion: 2
-      rgba: 2885681151
-    m_Color[2]:
-      serializedVersion: 2
-      rgba: 2231369727
-    m_Color[3]:
-      serializedVersion: 2
-      rgba: 1442840575
-    m_Color[4]:
-      serializedVersion: 2
-      rgba: 16777215
-  m_MinVertexDistance: 0.01
-  m_Autodestruct: 0
 --- !u!1001 &1298785464
 Prefab:
   m_ObjectHideFlags: 0
