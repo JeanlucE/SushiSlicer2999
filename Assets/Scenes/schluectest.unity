@@ -411,6 +411,7 @@ GameObject:
   - 65: {fileID: 1508101847}
   - 23: {fileID: 1508101846}
   - 114: {fileID: 1508101850}
+  - 114: {fileID: 1508101851}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -488,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 15
-  TurnSpeed: 40
+  TurnSpeed: 15
   UnsheathePoint: 0.9
   SheathePoint: 0.6
   SliceTime: 0.15
@@ -514,6 +515,22 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   SliceDistance: 5
+--- !u!114 &1508101851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508101845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6356d545ce26d4395e2fb9fdab5632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipes:
+  - Ingredients: 0000000000000000
+    PointScore: 10
+  - Ingredients: 000000000000000000000000
+    PointScore: 20
 --- !u!1 &1812728582
 GameObject:
   m_ObjectHideFlags: 0
