@@ -32,10 +32,14 @@ public class PlayerController : MonoBehaviour
 
     private PlayerAnimationController animationControl;
 
+    void Awake()
+    {
+        main = this;
+    }
+
     // Use this for initialization
     void Start()
     {
-        main = this;
         animationControl = GetComponent<PlayerAnimationController>();
     }
 
