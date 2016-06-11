@@ -235,6 +235,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1001 &618706211
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 192536, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_Name
+      value: BlowFish (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &872578325
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +441,52 @@ Prefab:
     - target: {fileID: 192536, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
       propertyPath: m_Name
       value: BlowFish (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1357750597
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426570, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 192536, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}
+      propertyPath: m_Name
+      value: BlowFish (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}

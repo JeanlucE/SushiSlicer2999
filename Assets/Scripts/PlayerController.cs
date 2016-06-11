@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -45,8 +46,7 @@ public class PlayerController : MonoBehaviour
                     float xSliceInput = Input.GetAxis("Controller1RX");
                     float ySliceInput = Input.GetAxis("Controller1RY");
                     Vector2 sliceInput = new Vector2(xSliceInput, ySliceInput);
-
-
+                    
                     transform.position += (Vector3) moveInput * MoveSpeed * Time.deltaTime;
 
                     //slice with right stick
@@ -58,7 +58,19 @@ public class PlayerController : MonoBehaviour
                         sliceStartPosition = transform.position;
                         sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
 
-                        animationControl.Slice(sliceStartPosition, sliceTargetPosition);
+                       
+                        List<EnemyData> ingredientsSliced = new List<EnemyData>(); //sliced this frame
+                        List<SliceInfo> sliceInfos = animationControl.Slice(sliceStartPosition, sliceTargetPosition);//slice objects
+                        foreach (SliceInfo s in sliceInfos)
+                        {
+                            EnemyScript e = s.slicePrefab.gameObject.GetComponent<EnemyScript>();
+                            if(e != null)
+                            {
+                                ingredientsSliced.Add(e.type);
+                                ComboList.Instance.AddIngredient(e.type);
+                            }
+                        }
+                        
 
                         Debug.DrawRay(transform.position, (Vector3) (SliceDistance * sliceDirection),  Color.red, 2);
                     }
@@ -71,7 +83,17 @@ public class PlayerController : MonoBehaviour
                         sliceStartPosition = transform.position;
                         sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
 
-                        animationControl.Slice(sliceStartPosition, sliceTargetPosition);
+                        List<EnemyData> ingredientsSliced = new List<EnemyData>(); //sliced this frame
+                        List<SliceInfo> sliceInfos = animationControl.Slice(sliceStartPosition, sliceTargetPosition);//slice objects
+                        foreach (SliceInfo s in sliceInfos)
+                        {
+                            EnemyScript e = s.gameObject.GetComponent<EnemyScript>();
+                            if (e != null)
+                            {
+                                ingredientsSliced.Add(e.type);
+                                ComboList.Instance.AddIngredient(e.type);
+                            }
+                        }
 
                         Debug.DrawRay(transform.position, (Vector3)(SliceDistance * sliceDirection), Color.red, 2);
                     }

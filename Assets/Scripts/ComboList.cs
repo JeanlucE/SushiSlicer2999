@@ -5,12 +5,12 @@ using System;
 
 public class ComboList : MonoBehaviour
 {
-    public static ComboList instance;
+    public static ComboList Instance;
    
     public void Awake()
     {
-        if(instance == null)
-            instance = this;
+        if(Instance == null)
+            Instance = this;
     }
 
     public float CurrentComboSum = 0;
@@ -114,6 +114,7 @@ public class ComboList : MonoBehaviour
     public void AddIngredient(EnemyData enemyData)
     {
         myComboList.Add(enemyData);
+        Debug.Log("Ingredient added!");
     }
 
     public float ResolveCombo()
