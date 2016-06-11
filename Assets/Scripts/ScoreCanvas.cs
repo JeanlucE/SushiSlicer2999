@@ -7,15 +7,16 @@ public class ScoreCanvas : MonoBehaviour {
     public Text ComboSumText;
     public Text ComboMultiplierText;
 
+    private ComboList cl;
+    private ComboEffect ce;
 	// Use this for initialization
 	void Start () {
-	
-	}
+        cl = PlayerController.main.gameObject.GetComponent<ComboList>();
+        ce = PlayerController.main.gameObject.GetComponentInChildren<ComboEffect>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        ComboList cl = PlayerController.main.gameObject.GetComponent<ComboList>();
-
         CurrentPointsText.text = "Points: " + cl.GetPoints();
         if(cl.GetSum() <= 0)
         {
@@ -24,9 +25,12 @@ public class ScoreCanvas : MonoBehaviour {
         }
         else
         {
+            int index = Mathf.Clamp((int)cl.GetMultiplier(), 0, ce.comboColors.Length);
+            Color c = ce.comboColors[index];
+            ComboMultiplierText.color = c;
+
             ComboSumText.text = "" + cl.GetSum();
             ComboMultiplierText.text = "x" + cl.GetMultiplier();
         }
-        
 	}
 }
