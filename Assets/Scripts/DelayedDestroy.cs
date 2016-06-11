@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestroyedDelete : MonoBehaviour {
+public class DelayedDestroy : MonoBehaviour {
 
     [Range(0.01f, 10.0f)]
     public float delay;

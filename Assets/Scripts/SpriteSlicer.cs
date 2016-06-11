@@ -28,6 +28,8 @@ public class SpriteSlicer : MonoBehaviour {
             {
                 hits.Add(info);
                 Slice(info, from, direction, punch);
+
+                info.DoSlice();
             }
         }
 
