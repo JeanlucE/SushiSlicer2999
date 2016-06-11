@@ -13,8 +13,9 @@ public class ComboList : MonoBehaviour
             Instance = this;
     }
 
+    private float CurrentPoints = 0;
     private float CurrentComboSum = 0;
-    private float CurrentComboMultiplier = 0;
+    private float CurrentComboMultiplier = 1;
     public float ComboTime;
     public List<EnemyData> myComboList = new List<EnemyData>();
     public List<AudioClip> ComboSounds = new List<AudioClip>();
@@ -111,18 +112,10 @@ public class ComboList : MonoBehaviour
 
     public void Update()
     {
-        float points = CheckCombo();
-
-        //we have ingredients and time has run out and
-        if (myComboList.Count > 0 && timeOfLastIngredient + ComboTime < Time.time)
+        //we have ingredients and time has run out
+        if (CurrentComboSum > 0 && timeOfLastIngredient + ComboTime < Time.time)
         {
-            //if the combo has points
-            if(points > 0)
-            {
-                int random = UnityEngine.Random.Range(0, ComboSounds.Count);
-                SoundEffectManager.Instance.CreateSoundEffect(ComboSounds[random]);
-            }
-
+            //clear current Combo and add points
             ResolveCombo();
         }
     }
@@ -132,39 +125,29 @@ public class ComboList : MonoBehaviour
         myComboList.Add(enemyData);
         Debug.Log("Ingredient added!");
         timeOfLastIngredient = Time.time;
+
+        //add points of this object
+        CurrentComboSum += enemyData.score;
+
+        //check for a combo and remove those ingredients
+        CheckCombo();
     }
 
-    public float CheckCombo()
+    private void CheckCombo()
     {
-        List<EnemyData> usedIngredients = new List<EnemyData>(myComboList.Count);
-        List<EnemyData> unusedIngredients = new List<EnemyData>(myComboList);
-        List<Recipe> combos = new List<Recipe>();
-
-        //check each recipes ingredients
-        foreach (Recipe r in recipes)
+        foreach(Recipe r in recipes)
         {
-            //remove recipe as many times as possible
-            bool removed = r.RemoveFrom(unusedIngredients);
-            //if the recipe was in the list add it to the list of combos
-            if (removed)
+            bool removed = r.RemoveFrom(myComboList);
+            
+            //Combo Found
+            if(removed)
             {
-                combos.Add(r);
-                usedIngredients.AddRange(r.Ingredients);
+                CurrentComboMultiplier++;
+                
+                int random = UnityEngine.Random.Range(0, ComboSounds.Count);
+                SoundEffectManager.Instance.CreateSoundEffect(ComboSounds[random]);
             }
         }
-
-        //calculate points
-        float sum = 0;
-        float multiplier = combos.Count;
-        foreach (Recipe r in combos)
-        {
-            sum += r.PointScore;
-        }
-
-        CurrentComboSum = sum;
-        CurrentComboMultiplier = multiplier;
-
-        return sum * multiplier;
     }
 
     public float GetMultiplier()
@@ -177,9 +160,20 @@ public class ComboList : MonoBehaviour
         return CurrentComboSum;
     }
 
+    public float GetPoints()
+    {
+        return CurrentPoints;
+    }
+
     public void ResolveCombo()
     {
-        myComboList.Clear();
+        //add combo points to currentPoints
+        CurrentPoints += CurrentComboSum * CurrentComboMultiplier;
+
+        CurrentComboSum = 0;
+        CurrentComboMultiplier = 1;
+
+        Debug.Log("combo resolved");
     }
 
     public void OnGUI()

@@ -17,7 +17,9 @@ public class SoundEffectManager : MonoBehaviour {
         if (clip == null)
             return;
 
-        GameObject g = (GameObject) Instantiate(new GameObject(), transform.position, Quaternion.identity);
+        GameObject g = new GameObject();
+        g.transform.position = transform.position;
+        g.name = clip.name;
         AudioSource audioSource = g.AddComponent<AudioSource>();
         audioSource.clip = clip;
         audioSource.Play();
