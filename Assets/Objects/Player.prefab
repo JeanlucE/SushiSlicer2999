@@ -253,6 +253,8 @@ GameObject:
   - 114: {fileID: 11406442}
   - 114: {fileID: 11444594}
   - 114: {fileID: 11422762}
+  - 114: {fileID: 11473030}
+  - 82: {fileID: 8241524}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -656,6 +658,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &8241524
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189070}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &9579474
 Animator:
   serializedVersion: 3
@@ -760,6 +836,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   SliceDistance: 10
+  SliceSounds:
+  - {fileID: 8300000, guid: a12a16e7cbde9684c8e017f94805488e, type: 3}
+  - {fileID: 8300000, guid: 3b22a29e2f1537f45b75cf08b92c10c4, type: 3}
+  SamuraiSounds:
+  - {fileID: 8300000, guid: 900fea0ae25be244a9127a0d3a16096c, type: 3}
+  - {fileID: 8300000, guid: ec287cd64f3629b41b4262836efdf9dd, type: 3}
+  - {fileID: 8300000, guid: 6f39247c6e559b8458f0867516025c01, type: 3}
 --- !u!114 &11422762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -789,7 +872,14 @@ MonoBehaviour:
   CurrentComboMultiplier: 1
   ComboTime: 2
   myComboList: []
-  ComboSounds: []
+  ComboSounds:
+  - {fileID: 8300000, guid: a716831783dadaa4ebf4620e9896ccd5, type: 3}
+  - {fileID: 8300000, guid: 4ad2f7633bde4bc4482dc578620946be, type: 3}
+  - {fileID: 8300000, guid: 61dad624eb1e9744b860cb7bc9f8b75a, type: 3}
+  - {fileID: 8300000, guid: 155f8c1376ffd4a41a96cf0db285359d, type: 3}
+  - {fileID: 8300000, guid: ad6fefcd171fe28499a6aa643158c70b, type: 3}
+  - {fileID: 8300000, guid: 6512681efb565c349a12d1baa4491c56, type: 3}
+  - {fileID: 8300000, guid: 3eddd7432a1856d49a10a446c9fda371, type: 3}
   recipes:
   - Ingredients:
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
@@ -798,6 +888,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
     - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+--- !u!114 &11473030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f86554c5170ea4b9b5250c1bd1d6b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &13723860
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve SlicePositionCurve;
     public float SliceDistance;
 
+    public List<AudioClip> SliceSounds = new List<AudioClip>();
+    public List<AudioClip> SamuraiSounds = new List<AudioClip>();
+
     private SwordState swordState = SwordState.Sheathed;
     private float sliceStartTime;
     private Vector2 sliceDirection;
@@ -87,10 +90,17 @@ public class PlayerController : MonoBehaviour
                         }
                         lookDirection = sliceDirection;
 
-                        Debug.DrawRay(transform.position, (Vector3)(SliceDistance * sliceDirection), Color.red, 2);
+                        //Do sound effect
+                        int random = UnityEngine.Random.Range(0, SliceSounds.Count);
+                        SoundEffectManager.Instance.CreateSoundEffect(SliceSounds[random]);
+
+                        random = UnityEngine.Random.Range(0, SamuraiSounds.Count);
+                        SoundEffectManager.Instance.CreateSoundEffect(SamuraiSounds[random]);
+
+                        //Debug.DrawRay(transform.position, (Vector3)(SliceDistance * sliceDirection), Color.red, 2);
                     }
 
-                    Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
+                    //Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
                 }
                 break;
             case SwordState.Unsheathed:

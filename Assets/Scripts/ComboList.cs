@@ -116,9 +116,11 @@ public class ComboList : MonoBehaviour
         //we have ingredients and time has run out and
         if (myComboList.Count > 0 && timeOfLastIngredient + ComboTime < Time.time)
         {
+            //if the combo has points
             if(points > 0)
             {
-
+                int random = UnityEngine.Random.Range(0, ComboSounds.Count);
+                SoundEffectManager.Instance.CreateSoundEffect(ComboSounds[random]);
             }
 
             ResolveCombo();
