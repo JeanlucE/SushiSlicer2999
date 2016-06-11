@@ -21,10 +21,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 sliceTargetPosition;
 
     private Vector2 lookDirection = Vector2.up;
+
+    private PlayerAnimationController animationControl;
+
     // Use this for initialization
     void Start()
     {
-
+        animationControl = GetComponent<PlayerAnimationController>();
     }
 
     // Update is called once per frame
@@ -56,7 +59,7 @@ public class PlayerController : MonoBehaviour
                         sliceStartPosition = transform.position;
                         sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
 
-                        SpriteSlicer.SliceAll(sliceStartPosition, sliceTargetPosition);
+                        animationControl.Slice(sliceStartPosition, sliceTargetPosition);
 
                         Debug.DrawRay(transform.position, (Vector3) (SliceDistance * sliceDirection),  Color.red, 2);
                     }
@@ -94,7 +97,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnGUI()
+    {
+        GUI.BeginGroup(new Rect(20, 20, 100, 100));
+        GUI.Box(new Rect(0, 0, 100, 100), "");
 
+        GUI.Box(new Rect(50 - 2, 50 - 2, 4, 4), "");
+
+        GUI.Box(new Rect(
+            50 + 20 * Input.GetAxis("Controller1RX") - 2,
+            50 - 20 * Input.GetAxis("Controller1RY") - 2,
+            4,
+            4
+        ), "");
+
+        GUI.EndGroup();
+    }
 
     private enum SwordState { Sheathed, Unsheathed }
 }
