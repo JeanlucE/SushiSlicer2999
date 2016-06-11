@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
                     Vector2 sliceInput = new Vector2(xSliceInput, ySliceInput);
                     
                     transform.position += (Vector3) moveInput * MoveSpeed * Time.deltaTime;
-
+                    
                     //slice with right stick
                     if (sliceInput.SqrMagnitude() > UnsheathePoint * UnsheathePoint)
                     {
@@ -103,14 +103,7 @@ public class PlayerController : MonoBehaviour
 
                     //Only rotate player if we have movementinput
                     if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
-                    {
                         lookDirection = moveInput;
-                        animationControl.SetRunning(true);
-                    }
-                    else
-                    {
-                        animationControl.SetRunning(false);
-                    }
 
                     //rotate player to face forward
                     float angletoRotate = -Vector2.Angle(Vector2.up, lookDirection);
@@ -133,7 +126,6 @@ public class PlayerController : MonoBehaviour
 
                     if (Time.time > sliceStartTime + SliceTime && sliceInput.SqrMagnitude() < SheathePoint * SheathePoint)
                     {
-                        animationControl.SetSlice(false);
                         swordState = SwordState.Sheathed;
                     }
                 }

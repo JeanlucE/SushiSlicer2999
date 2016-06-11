@@ -64,7 +64,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113660}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!50 &5006502
 Rigidbody2D:
   serializedVersion: 2
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4258356f5cf360140af44d6b8681089b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 3, y: 0, z: 0}
+  velocity: {x: 0, y: 3, z: 0}
   localSpace: 1
 --- !u!1001 &100100000
 Prefab:
