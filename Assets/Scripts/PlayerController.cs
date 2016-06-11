@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController main;
+
     public float MoveSpeed;
     public float TurnSpeed;
     [Range(0, 1)]
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        main = this;
         animationControl = GetComponent<PlayerAnimationController>();
     }
 

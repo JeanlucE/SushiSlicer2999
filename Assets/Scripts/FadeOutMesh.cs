@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FadeOutSprite : MonoBehaviour {
+public class FadeOutMesh : MonoBehaviour {
 
     [Range(0.01f, 5.0f)]
     public float fadeOutTime = 1.0f;
@@ -9,20 +9,18 @@ public class FadeOutSprite : MonoBehaviour {
     public float fadeOutOffset = 0.0f;
 
     private float startTime;
-    private SpriteRenderer sr;
+    private MeshRenderer mr;
 
     void Start()
     {
         this.startTime = Time.time + fadeOutOffset;
-        this.sr = GetComponent<SpriteRenderer>();
+        this.mr = GetComponent<MeshRenderer>();
     }
 
 	void Update ()
     {
-        Color color = sr.color;
-        color.a = Mathf.Clamp01(1.0f - (Time.time - startTime) / fadeOutTime);
-
-        sr.color = color;
+        float alpha = Mathf.Clamp01(1.0f - (Time.time - startTime) / fadeOutTime);
+        mr.material.SetFloat("_Fade", alpha);
 	}
 
 }
