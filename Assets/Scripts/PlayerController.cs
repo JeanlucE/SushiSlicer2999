@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
                         sliceStartPosition = transform.position;
                         sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
 
+                        SpriteSlicer.SliceAll(sliceStartPosition, sliceTargetPosition);
+
                         Debug.DrawRay(transform.position, (Vector3) (SliceDistance * sliceDirection),  Color.red, 2);
                     }
 
