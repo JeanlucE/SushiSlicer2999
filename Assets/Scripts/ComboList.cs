@@ -3,7 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class ComboList: MonoBehaviour {
+public class ComboList : MonoBehaviour
+{
+    public static ComboList instance;
+   
+    public void Awake()
+    {
+        if(instance == null)
+            instance = this;
+    }
+
     public float CurrentComboSum = 0;
     public float CurrentComboMultiplier = 1;
 
@@ -19,7 +28,7 @@ public class ComboList: MonoBehaviour {
             get
             {
                 float sum = 0;
-                foreach(EnemyData e in Ingredients)
+                foreach (EnemyData e in Ingredients)
                 {
                     sum += e.score;
                 }
@@ -30,12 +39,12 @@ public class ComboList: MonoBehaviour {
 
         private bool IsContainedIn(List<EnemyData> list)
         {
-            if(list == null || Ingredients == null || Ingredients.Length > list.Count)
+            if (list == null || Ingredients == null || Ingredients.Length > list.Count)
             {
                 return false;
             }
 
-            foreach(EnemyData e in Ingredients)
+            foreach (EnemyData e in Ingredients)
             {
                 if (list.Contains(e))
                 {
@@ -67,7 +76,7 @@ public class ComboList: MonoBehaviour {
                 return false;
             }
 
-            
+
         }
     }
 
@@ -77,11 +86,11 @@ public class ComboList: MonoBehaviour {
         public int Compare(Recipe x, Recipe y)
         {
             float f = -(x.PointScore - y.PointScore);
-            if(f < 0)
+            if (f < 0)
             {
                 return -1;
             }
-            else if(f == 0)
+            else if (f == 0)
             {
                 return 0;
             }
@@ -99,7 +108,7 @@ public class ComboList: MonoBehaviour {
 
     public void Update()
     {
-        //ResolveCombo();
+        ResolveCombo();
     }
 
     public void AddIngredient(EnemyData enemyData)
@@ -115,42 +124,27 @@ public class ComboList: MonoBehaviour {
         List<EnemyData> lastIngredients = new List<EnemyData>(myComboList.Count);
         List<Recipe> combos = new List<Recipe>();
 
-        while(!comboResolved)
+        //check each recipes ingredients
+        foreach (Recipe r in recipes)
         {
-            //check each recipes ingredients
-            foreach(Recipe r in recipes)
+            //remove recipe as many times as possible
+            bool removed = false;
+            do
             {
-                //remove recipe as many times as possible
-                bool removed = false;
-                do
+                removed = r.RemoveFrom(unusedIngredients);
+                //if the recipe was in the list add it to the list of combos
+                if (removed)
                 {
-                    removed = r.RemoveFrom(unusedIngredients);
-                    //if the recipe was in the list add it to the list of combos
-                    if (removed)
-                    {
-                        combos.Add(r);
-                        usedIngredients.AddRange(r.Ingredients);
-                    }
-                } while (removed);
-            }
-
-            //chech anything has changed
-            if(lastIngredients.Equals(usedIngredients))
-            {
-                comboResolved = true;
-            }
-            else
-            {
-                lastIngredients.Clear();
-                lastIngredients.AddRange(usedIngredients); 
-            }
-            Debug.Log("Blubb!");
+                    combos.Add(r);
+                    usedIngredients.AddRange(r.Ingredients);
+                }
+            } while (removed);
         }
 
         //calculate points
         float sum = 0;
         float multiplier = combos.Count;
-        foreach(Recipe r in combos)
+        foreach (Recipe r in combos)
         {
             sum += r.PointScore;
         }
@@ -159,5 +153,10 @@ public class ComboList: MonoBehaviour {
         CurrentComboMultiplier = multiplier;
 
         return sum * multiplier;
+    }
+
+    public void OnGUI()
+    {
+        GUI.Label(new Rect(Screen.width - 100, 50, 100, 100), CurrentComboSum + " x " + CurrentComboMultiplier);
     }
 }

@@ -412,6 +412,7 @@ GameObject:
   - 23: {fileID: 1508101846}
   - 114: {fileID: 1508101850}
   - 114: {fileID: 1508101851}
+  - 114: {fileID: 1508101852}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -526,11 +527,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6356d545ce26d4395e2fb9fdab5632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentComboSum: 0
+  CurrentComboMultiplier: 1
+  myComboList: []
   recipes:
-  - Ingredients: 0000000000000000
-    PointScore: 10
-  - Ingredients: 000000000000000000000000
-    PointScore: 20
+  - Ingredients:
+    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+  - Ingredients:
+    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+--- !u!114 &1508101852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508101845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03c386b1c338b54f9e7f610c2f33b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slicePrefab: {fileID: 168976, guid: 9f31bca18f635d84f93b6717f1c3714a, type: 2}
 --- !u!1 &1812728582
 GameObject:
   m_ObjectHideFlags: 0

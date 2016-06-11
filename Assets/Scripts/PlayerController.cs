@@ -49,9 +49,8 @@ public class PlayerController : MonoBehaviour
 
                     transform.position += (Vector3) moveInput * MoveSpeed * Time.deltaTime;
 
-                    //Debug.Log(sliceInput.magnitude);
+                    //slice with right stick
                     if (sliceInput.SqrMagnitude() > UnsheathePoint * UnsheathePoint)
-                    //if (Input.GetKeyDown(KeyCode.Joystick1Button0))
                     {
                         swordState = SwordState.Unsheathed;
                         sliceStartTime = Time.time;
@@ -62,6 +61,19 @@ public class PlayerController : MonoBehaviour
                         animationControl.Slice(sliceStartPosition, sliceTargetPosition);
 
                         Debug.DrawRay(transform.position, (Vector3) (SliceDistance * sliceDirection),  Color.red, 2);
+                    }
+                    //press "A" button
+                    else if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+                    {
+                        swordState = SwordState.Unsheathed;
+                        sliceStartTime = Time.time;
+                        sliceDirection = moveInput.normalized;
+                        sliceStartPosition = transform.position;
+                        sliceTargetPosition = transform.position + (Vector3)(SliceDistance * sliceDirection);
+
+                        animationControl.Slice(sliceStartPosition, sliceTargetPosition);
+
+                        Debug.DrawRay(transform.position, (Vector3)(SliceDistance * sliceDirection), Color.red, 2);
                     }
 
                     Debug.DrawRay(transform.position, (Vector3)(SliceDistance * moveInput));
