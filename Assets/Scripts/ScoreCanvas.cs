@@ -21,7 +21,7 @@ public class ScoreCanvas : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        CurrentPointsText.text = "Points: " + cl.GetPoints();
+        CurrentPointsText.text = "" + cl.GetPoints();
         if(cl.GetSum() <= 0)
         {
             ComboSumText.text = "";
@@ -29,7 +29,7 @@ public class ScoreCanvas : MonoBehaviour {
         }
         else
         {
-            int index = Mathf.Clamp((int)cl.GetMultiplier(), 0, ce.comboColors.Length);
+            int index = Mathf.Clamp((int)cl.GetMultiplier(), 0, ce.comboColors.Length - 1);
             Color c = ce.comboColors[index];
             ComboMultiplierText.color = c;
 
