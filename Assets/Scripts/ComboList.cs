@@ -191,13 +191,19 @@ public class ComboList : MonoBehaviour
         CurrentComboSum = 0;
         CurrentComboMultiplier = 1;
 
-        
-
         //update list
         myComboList.Clear();
 
         //update score canvas
         scoreCanvas.IngredientsChanged(true);
+    }
+
+    public void EndLevel()
+    {
+        CurrentPoints += CurrentComboSum * CurrentComboMultiplier;
+
+        CurrentComboSum = 0;
+        CurrentComboMultiplier = 1;
     }
 
     public void OnGUI()
