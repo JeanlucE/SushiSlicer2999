@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7059741b23f27a746bcf401bc2ec66e3, type: 3}
   m_Name: Lachs
   m_EditorClassIdentifier: 
-  score: 0
+  score: 200
+  Icon: {fileID: 155446, guid: 57e9086f668b7fc47b97fbf7936de529, type: 2}

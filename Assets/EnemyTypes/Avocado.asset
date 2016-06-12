@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7059741b23f27a746bcf401bc2ec66e3, type: 3}
   m_Name: Avocado
   m_EditorClassIdentifier: 
-  score: 0
+  score: 500
+  Icon: {fileID: 155446, guid: 174410215d28fbc43a951e33856d0906, type: 2}

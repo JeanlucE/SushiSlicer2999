@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7059741b23f27a746bcf401bc2ec66e3, type: 3}
   m_Name: Alge
   m_EditorClassIdentifier: 
-  score: 0
+  score: 400
+  Icon: {fileID: 155446, guid: e9a1b4e2b1d2281429066113e5f1f2f8, type: 2}

@@ -54,6 +54,25 @@ public class ScoreCanvas : MonoBehaviour {
 
     private void DrawIcons(List<EnemyData> list)
     {
-        
+        //clear panel
+        for(int i = 0; i < icons.Count; i++)
+        {
+            Destroy(icons[i]);
+        }
+
+        //populate panel
+        for(int i = 0; i < list.Count; i++)
+        {
+            float horizontalPos = ComboListStart + i * 150;
+            GameObject icon = Instantiate(list[i].Icon);
+            icon.transform.SetParent(ComboPanel);
+            RectTransform rt = icon.GetComponent<RectTransform>();
+            rt.localPosition = new Vector3(horizontalPos, 0, 0);
+            rt.localScale = new Vector3(1, 1, 1);
+
+            icons.Add(icon);
+        }
     }
+
+    private List<GameObject> icons = new List<GameObject>();
 }
