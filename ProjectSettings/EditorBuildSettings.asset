@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/title.unity
   - enabled: 1
     path: Assets/Scenes/roberttest.unity
+  - enabled: 1
+    path: Assets/Scenes/score screen.unity
