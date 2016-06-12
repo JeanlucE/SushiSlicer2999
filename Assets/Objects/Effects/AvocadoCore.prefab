@@ -83,7 +83,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &5867584
 CircleCollider2D:
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4258356f5cf360140af44d6b8681089b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 25, z: 0}
+  velocity: {x: 0, y: 45, z: 0}
   localSpace: 1
 --- !u!114 &11489336
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a5ad9ff5adb3542aa3c3d76bf77a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torpor: 111
+  torpor: 110
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

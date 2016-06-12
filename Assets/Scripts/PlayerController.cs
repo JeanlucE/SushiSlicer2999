@@ -32,12 +32,17 @@ public class PlayerController : MonoBehaviour
 
     private PlayerAnimationController animationControl;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb { get; private set; }
 
     public float recoverSpeed;
 
     private float knockTorpor;
     private bool knockedOut;
+
+    public bool IsKnockedOut
+    {
+        get { return knockedOut; }
+    }
 
     void Awake()
     {
@@ -55,9 +60,9 @@ public class PlayerController : MonoBehaviour
     {
         knockTorpor += torporIncrease;
 
-        if (knockTorpor > 100)
+        if (!knockedOut && knockTorpor > 100)
         {
-            print(knockTorpor);
+            //print(knockTorpor);
             knockedOut = true;
             animationControl.Knockout();
         }
