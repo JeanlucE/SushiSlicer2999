@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torpor: 110
+  debris: {fileID: 196348, guid: e05b6bdbc7dd13f4a89a7dd17cd99792, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -11,4 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3a54f1890fd904891f8b6fc440f315, type: 3}
   m_Name: Rezept6
   m_EditorClassIdentifier: 
-  enemyTypes: []
+  enemyTypes:
+  - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+  - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+  - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+  - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+  - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
