@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private bool knockedOut;
 
     private float slowdown = 1.0f;
+    private int tentakels = 0;
 
     public bool IsKnockedOut
     {
@@ -78,6 +79,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator AttachTentakel()
+    {
+        tentakels++;
+
+        yield return new WaitForSeconds(Random.Range(0.8f, 2.0f));
+
+        tentakels--;
+
+        yield return null;
+    }
+
+    public void Slowdown(float factor)
+    {
+        StartCoroutine(AttachTentakel());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -112,6 +129,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (tentakels > 0)
+            {
+                slowdown = 1.0f / tentakels;
+            }
+
             switch (swordState)
             {
                 case SwordState.Sheathed:

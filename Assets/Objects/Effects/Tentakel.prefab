@@ -45,6 +45,7 @@ GameObject:
   - 50: {fileID: 5013072}
   - 114: {fileID: 11474796}
   - 61: {fileID: 6150106}
+  - 114: {fileID: 11430950}
   m_Layer: 0
   m_Name: Tentakel
   m_TagString: Untagged
@@ -174,6 +175,17 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 3b6913cacfdb91b468fb19128de17ca7, type: 3}
   unravelOffset: 0.88
   swapTime: 0.08
+--- !u!114 &11430950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c27bdc3039468428bf17e3fd6b4a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11474796
 MonoBehaviour:
   m_ObjectHideFlags: 1
