@@ -181,6 +181,9 @@ public class ComboList : MonoBehaviour
         //petal effect
         finishedComboEffect.Play();
 
+        //update list
+        myComboList.Clear();
+
         //update score canvas
         scoreCanvas.IngredientsChanged(true);
         Debug.Log("Combo resolved");
