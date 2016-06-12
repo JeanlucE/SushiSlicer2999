@@ -88,6 +88,8 @@ public class ScoreCanvas : MonoBehaviour {
     private void TimeExpired()
     {
         hasTimeExpired = true;
+        cl.EndLevel();
+
         lastHighscore = cl.GetPoints();
         SceneManager.LoadScene("score screen");
     }
