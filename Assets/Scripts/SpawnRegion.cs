@@ -72,10 +72,11 @@ public class SpawnRegion : MonoBehaviour {
     public List<SpawnPath> paths = new List<SpawnPath>();
     public int initialSpawnCount = 5;
     public int maximumSpawnCount = 7;
-    
+    public float spawnTimerDelay = 1.5f;
+
     private List<SpawnPath> spawnedPaths = new List<SpawnPath>();
     private IEnumerator crSpawn;
-    
+
     void Awake()
     {
         main = this;
@@ -140,7 +141,7 @@ public class SpawnRegion : MonoBehaviour {
                 }
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(spawnTimerDelay);
         }
 
         yield return null;
