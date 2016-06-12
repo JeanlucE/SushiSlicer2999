@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3a54f1890fd904891f8b6fc440f315, type: 3}
+  m_Name: Rezept3
+  m_EditorClassIdentifier: 
+  enemyTypes:
+  - {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
+  - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+  - {fileID: 11400000, guid: 53742c6a08060d143a086924f2885707, type: 2}
