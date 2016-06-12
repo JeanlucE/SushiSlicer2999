@@ -954,6 +954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishedComboEffect: {fileID: 19896208}
+  scoreCanvas: {fileID: 0}
   ComboTime: 2
   myComboList: []
   ComboSounds:
@@ -966,12 +967,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3eddd7432a1856d49a10a446c9fda371, type: 3}
   recipes:
   - Ingredients:
-    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
-    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+    - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+    - {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
+    - {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
+    ResultPrefab: {fileID: 155446, guid: bdc3d105a24781644af61664ab50b88a, type: 2}
   - Ingredients:
-    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
-    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
-    - {fileID: 11400000, guid: 75768a80f71ca4145b3beb1f36558a67, type: 2}
+    - {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
+    - {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
+    - {fileID: 11400000, guid: 53742c6a08060d143a086924f2885707, type: 2}
+    ResultPrefab: {fileID: 155446, guid: 8714b60cfa0311a42ac46c77f4cbbb5c, type: 2}
+  - Ingredients:
+    - {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
+    - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+    - {fileID: 11400000, guid: 53742c6a08060d143a086924f2885707, type: 2}
+    ResultPrefab: {fileID: 155446, guid: 73003391ded13d34d8ef98d42c9adee8, type: 2}
+  - Ingredients:
+    - {fileID: 11400000, guid: 392478bf30b03a74e878756939b29b57, type: 2}
+    - {fileID: 11400000, guid: ec24ec4b922ad4d4db423a11b8a6b03f, type: 2}
+    - {fileID: 11400000, guid: 9c18e6b9cc6d33942ad972730ba1b253, type: 2}
+    ResultPrefab: {fileID: 155446, guid: 76ec68e5200c895438df04588a42a7ca, type: 2}
 --- !u!114 &11452548
 MonoBehaviour:
   m_ObjectHideFlags: 1
