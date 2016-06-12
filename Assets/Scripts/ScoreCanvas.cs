@@ -7,17 +7,22 @@ public class ScoreCanvas : MonoBehaviour {
     public Text CurrentPointsText;
     public Text ComboSumText;
     public Text ComboMultiplierText;
+    public Text TimeLeftText;
     public RectTransform ComboPanel;
     public float ComboListStart;
+    public float MaximumTimeForLevel;
 
     private ComboList cl;
     private ComboEffect ce;
-	// Use this for initialization
-	void Start () {
+    private float startTime;
+    private float internalTimeforLevel;
+    private bool hasTimeExpired = false;
+    // Use this for initialization
+    void Start () {
         cl = PlayerController.main.gameObject.GetComponent<ComboList>();
         ce = PlayerController.main.gameObject.GetComponentInChildren<ComboEffect>();
+        startTime = Time.time;
     }
-
     
     // Update is called once per frame
     void Update () {
@@ -35,6 +40,15 @@ public class ScoreCanvas : MonoBehaviour {
 
             ComboSumText.text = "" + cl.GetSum();
             ComboMultiplierText.text = "x" + cl.GetMultiplier();
+        }
+
+        internalTimeforLevel = Mathf.Ceil(startTime + MaximumTimeForLevel - Time.time);
+
+        TimeLeftText.text = "Time: " + internalTimeforLevel;
+
+        if (internalTimeforLevel <= 0 && !hasTimeExpired)
+        {
+            TimeExpired();
         }
 	}
 
@@ -67,4 +81,9 @@ public class ScoreCanvas : MonoBehaviour {
     }
 
     private List<GameObject> icons = new List<GameObject>();
+
+    private void TimeExpired()
+    {
+        hasTimeExpired = true;
+    }
 }
