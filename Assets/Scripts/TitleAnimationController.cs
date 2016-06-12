@@ -4,6 +4,7 @@ using System.Collections;
 public class TitleAnimationController : MonoBehaviour 
 {
     public Animator animator;
+    
 
     public void SetSlice(bool slice)
     {
