@@ -155,7 +155,7 @@ public class ComboList : MonoBehaviour
                 int random = UnityEngine.Random.Range(0, ComboSounds.Count);
                 SoundEffectManager.Instance.CreateSoundEffect(ComboSounds[random]);
 
-                StartCoroutine(spawnSushi(1.0f, r));
+                StartCoroutine(spawnSushi(0.5f, r));
             }
         }
     }
@@ -181,6 +181,9 @@ public class ComboList : MonoBehaviour
         {
             return;
         }
+        //petal effect
+        if(CurrentComboMultiplier > 1)
+            finishedComboEffect.Play();
 
         //add combo points to currentPoints
         CurrentPoints += CurrentComboSum * CurrentComboMultiplier;
@@ -188,8 +191,7 @@ public class ComboList : MonoBehaviour
         CurrentComboSum = 0;
         CurrentComboMultiplier = 1;
 
-        //petal effect
-        finishedComboEffect.Play();
+        
 
         //update list
         myComboList.Clear();
