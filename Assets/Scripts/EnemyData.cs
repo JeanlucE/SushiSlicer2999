@@ -5,5 +5,6 @@ using System.Collections;
 public class EnemyData : ScriptableObject {
 
     public int score;
+    public GameObject Icon;
 
 }
