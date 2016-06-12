@@ -36,20 +36,11 @@ public class ScoreCanvas : MonoBehaviour {
             ComboSumText.text = "" + cl.GetSum();
             ComboMultiplierText.text = "x" + cl.GetMultiplier();
         }
-
-        List<EnemyData> myIngredients = cl.myComboList;
-
-        if(ingredientsChanged)
-        {
-            DrawIcons(myIngredients);
-            ingredientsChanged = false;
-        }
 	}
 
-    private bool ingredientsChanged = false;
     public void IngredientsChanged(bool changed)
     {
-        ingredientsChanged = changed;
+        DrawIcons(cl.myComboList);
     }
 
     private void DrawIcons(List<EnemyData> list)
@@ -59,6 +50,7 @@ public class ScoreCanvas : MonoBehaviour {
         {
             Destroy(icons[i]);
         }
+        icons.Clear();
 
         //populate panel
         for(int i = 0; i < list.Count; i++)
