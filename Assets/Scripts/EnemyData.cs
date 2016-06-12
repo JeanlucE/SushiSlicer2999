@@ -26,6 +26,7 @@ public class EnemyData : ScriptableObject {
 
         instance.transform.parent = parent;
         instance.transform.localPosition = at;
+        instance.transform.localRotation = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.forward);
 
         return instance;
     }
