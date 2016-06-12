@@ -10,13 +10,13 @@ public class TentakelAnimation : MonoBehaviour {
     public float swapTime;
 
     private Material material;
-    private Coroutine cr, cr2;
+    private IEnumerator cr, cr2;
 
 	void Start ()
     {
         material = tentakel.material;
-        cr = StartCoroutine(Animate());
-        cr2 = StartCoroutine(Unravel());
+        StartCoroutine(cr = Animate());
+        StartCoroutine(cr2 = Unravel());
 	}
 
     void OnDisable()
@@ -32,11 +32,13 @@ public class TentakelAnimation : MonoBehaviour {
         
         while (this && pos > 0)
         {
-            yield return new WaitForEndOfFrame();
-
             pos += speed * Time.deltaTime;
             material.SetFloat("_Clip", pos);
+
+            yield return new WaitForEndOfFrame();
         }
+
+        yield return null;
     }
 
     IEnumerator Animate()
@@ -53,6 +55,8 @@ public class TentakelAnimation : MonoBehaviour {
 
                 yield return new WaitForSeconds(swapTime);
             }
+
+            yield return null;
         }
     }
 

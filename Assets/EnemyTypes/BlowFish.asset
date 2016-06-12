@@ -13,3 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 1000
   Icon: {fileID: 155446, guid: 57e9086f668b7fc47b97fbf7936de529, type: 2}
+  variants:
+  - {fileID: 192536, guid: dad4d9e1728c2154ea47170399043ecd, type: 2}

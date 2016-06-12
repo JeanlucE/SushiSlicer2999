@@ -9,11 +9,11 @@ public class AvocadoPower : MonoBehaviour {
     public float respawnMin = 0.9f, respawnMax = 10.0f;
 
     private Texture avocadoTemp;
-    private Coroutine cr;
+    private IEnumerator cr;
 
     void Start()
     {
-        cr = StartCoroutine(AvocadoBrain());
+        StartCoroutine(cr = AvocadoBrain());
 	}
 
     void OnDestroy()
@@ -26,7 +26,7 @@ public class AvocadoPower : MonoBehaviour {
 
     IEnumerator AvocadoBrain()
     {
-        while (true)
+        while (this)
         {
             float waitTime = Random.Range(respawnMin, respawnMax);
             yield return new WaitForSeconds(waitTime);
@@ -41,6 +41,8 @@ public class AvocadoPower : MonoBehaviour {
             core.Regrow();
             yield return new WaitUntil(core.FullyGrown);
         }
+
+        yield return null;
     }
 
 }

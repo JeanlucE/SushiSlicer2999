@@ -50,16 +50,31 @@ public class SpawnRegion : MonoBehaviour {
             {
                 region.spawnedPaths.Add(this);
 
+                List<int> order = new List<int>();
+                for (int i=0; i<this.points.Length; i++)
+                {
+                    order.Add(i);
+                }
 
+                this.instances = new GameObject[this.points.Length];
+                foreach (EnemyData enemy in receipt.enemyTypes)
+                {
+                    int orderId = Random.Range(0, order.Count);
+                    int id = order[orderId];
+                    order.RemoveAt(orderId);
+
+                    this.instances[id] = enemy.SummonAt(this.points[id], region.transform.parent);
+                }
             }
         }
     }
 
     public List<SpawnPath> paths = new List<SpawnPath>();
     public int initialSpawnCount = 5;
+    public int maximumSpawnCount = 7;
     
     private List<SpawnPath> spawnedPaths = new List<SpawnPath>();
-    private Coroutine crSpawn;
+    private IEnumerator crSpawn;
     
     void Awake()
     {
@@ -73,7 +88,7 @@ public class SpawnRegion : MonoBehaviour {
             paths[Random.Range(0, paths.Count)].Summon(this);
         }
 
-        crSpawn = StartCoroutine(EnemySpawner());
+        StartCoroutine(crSpawn = EnemySpawner());
     }
 
     public static Vector2 GetWorld(Ray r)
@@ -93,37 +108,42 @@ public class SpawnRegion : MonoBehaviour {
                 else
                 {
                     paths.Add(path);
-                    return false;
+                    return true;
                 }
             });
 
-            Camera cam = Camera.main;
-            Vector2 bottomLeft = GetWorld(cam.ViewportPointToRay(new Vector3(0, 0, 0)));
-            Vector2 topRight = GetWorld(cam.ViewportPointToRay(new Vector3(1, 1, 0)));
-
-            if (paths.Count > 0)
+            if (spawnedPaths.Count < maximumSpawnCount)
             {
-                SpawnPath chosenOne = null;
+                Camera cam = Camera.main;
+                Vector2 bottomLeft = GetWorld(cam.ViewportPointToRay(new Vector3(0, 0, 0)));
+                Vector2 topRight = GetWorld(cam.ViewportPointToRay(new Vector3(1, 1, 0)));
 
-                Rect cameraWorldRect = new Rect(bottomLeft, topRight - bottomLeft);
-                for (int i = 0; i < 5; i++)
+                if (paths.Count > 0)
                 {
-                    SpawnPath path = paths[Random.Range(0, paths.Count)];
-                    if (path.intersects(cameraWorldRect))
+                    SpawnPath chosenOne = null;
+
+                    Rect cameraWorldRect = new Rect(bottomLeft, topRight - bottomLeft);
+                    for (int i = 0; i < 5; i++)
                     {
-                        chosenOne = path;
-                        break;
+                        SpawnPath path = paths[Random.Range(0, paths.Count)];
+                        if (path.intersects(cameraWorldRect))
+                        {
+                            chosenOne = path;
+                            break;
+                        }
                     }
-                }
 
-                if (chosenOne != null)
-                {
-                    chosenOne.Summon(this);
+                    if (chosenOne != null)
+                    {
+                        chosenOne.Summon(this);
+                    }
                 }
             }
 
             yield return new WaitForSeconds(0.5f);
         }
+
+        yield return null;
     }
 
 }

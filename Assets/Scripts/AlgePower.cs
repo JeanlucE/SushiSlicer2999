@@ -6,21 +6,21 @@ public class AlgePower : MonoBehaviour {
     public Vector3 mouthPosition;
     public GameObject tentakelPrefab;
 
-    private Coroutine cr;
+    private IEnumerator cr;
 
     void Start()
     {
-        cr = StartCoroutine(TentakelBrain());
+        StartCoroutine(cr = TentakelBrain());
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         StopCoroutine(cr);
     }
 
     IEnumerator TentakelBrain()
     {
-        while (true)
+        while (this)
         {
             yield return new WaitForSeconds(Random.Range(0.5f, 7.0f));
 
@@ -28,6 +28,8 @@ public class AlgePower : MonoBehaviour {
             SpawnTentakel(Quaternion.AngleAxis(-90f, Vector3.forward));
             SpawnTentakel(Quaternion.AngleAxis(-100f, Vector3.forward));
         }
+
+        yield return null;
     }
 
     void SpawnTentakel(Quaternion direction)

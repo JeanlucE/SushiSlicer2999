@@ -135,7 +135,10 @@ public class ComboList : MonoBehaviour
         //check for a combo and remove those ingredients
         CheckCombo();
 
-        scoreCanvas.IngredientsChanged(true);
+        if (scoreCanvas)
+        {
+            scoreCanvas.IngredientsChanged(true);
+        }
     }
 
     private void CheckCombo()
@@ -174,6 +177,11 @@ public class ComboList : MonoBehaviour
 
     public void ResolveCombo()
     {
+        if (!scoreCanvas)
+        {
+            return;
+        }
+
         //add combo points to currentPoints
         CurrentPoints += CurrentComboSum * CurrentComboMultiplier;
 
@@ -209,5 +217,7 @@ public class ComboList : MonoBehaviour
         RectTransform rt = sushi.GetComponent<RectTransform>();
         rt.localPosition = new Vector3(horizontalPos, 0, 0);
         rt.localScale = new Vector3(1, 1, 1);
+
+        yield return null;
     }
 }
