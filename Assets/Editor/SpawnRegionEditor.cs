@@ -9,13 +9,13 @@ public class SpawnRegionEditor : Editor {
     private SpawnRegion region;
     private SpawnRegion.SpawnPath nextPath = null;
 
-    private Vector3 point;
-    private List<Vector3> points;
+    private Vector2 point;
+    private List<Vector2> points;
 
     void OnEnable()
     {
         region = this.target as SpawnRegion;
-        points = new List<Vector3>();
+        points = new List<Vector2>();
         nextPath = null;
     }
 
@@ -90,6 +90,7 @@ public class SpawnRegionEditor : Editor {
                     nextPath.points = points.ToArray();
                     region.paths.Add(nextPath);
                     nextPath = null;
+                    EditorUtility.SetDirty(region);
                 }
             }
         }
@@ -98,11 +99,20 @@ public class SpawnRegionEditor : Editor {
         {
             Handles.Label(path.points[0], path.receipt.name);
 
+            Vector3[] points = new Vector3[path.points.Length];
             for (int i=0; i<path.points.Length; i++)
             {
-                path.points[i] = Handles.FreeMoveHandle(path.points[i], Quaternion.identity, HandleUtility.GetHandleSize(path.points[i]) * 0.2f, Vector3.zero, Handles.CircleCap);
+                Vector2 result = Handles.FreeMoveHandle(path.points[i], Quaternion.identity, HandleUtility.GetHandleSize(path.points[i]) * 0.2f, Vector3.zero, Handles.CircleCap);
+                if (result != path.points[i])
+                {
+                    path.points[i] = result;
+                    EditorUtility.SetDirty(region);
+                }
+
+                points[i] = path.points[i];
             }
-            Handles.DrawAAPolyLine(path.points);
+
+            Handles.DrawAAPolyLine(points);
         }
     }
 

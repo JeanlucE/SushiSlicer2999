@@ -10,11 +10,11 @@ public class SpawnRegion : MonoBehaviour {
 	public class SpawnPath
     {
         public EnemyDataStore receipt;
-        public Vector3[] points = new Vector3[0];
+        public Vector2[] points = new Vector2[0];
 
         public bool intersects(Rect other)
         {
-            foreach (Vector3 point in points)
+            foreach (Vector2 point in points)
             {
                 if (other.Contains(point))
                 {
