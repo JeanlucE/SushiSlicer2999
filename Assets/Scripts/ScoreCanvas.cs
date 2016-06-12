@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class ScoreCanvas : MonoBehaviour {
+    public static float lastHighscore;
+
     public Text CurrentPointsText;
     public Text ComboSumText;
     public Text ComboMultiplierText;
@@ -45,7 +48,7 @@ public class ScoreCanvas : MonoBehaviour {
         internalTimeforLevel = Mathf.Ceil(startTime + MaximumTimeForLevel - Time.time);
 
         TimeLeftText.text = "Time: " + internalTimeforLevel;
-
+        
         if (internalTimeforLevel <= 0 && !hasTimeExpired)
         {
             TimeExpired();
@@ -85,5 +88,7 @@ public class ScoreCanvas : MonoBehaviour {
     private void TimeExpired()
     {
         hasTimeExpired = true;
+        lastHighscore = cl.GetPoints();
+        SceneManager.LoadScene("score screen");
     }
 }
