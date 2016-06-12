@@ -135,7 +135,10 @@ public class ComboList : MonoBehaviour
         //check for a combo and remove those ingredients
         CheckCombo();
 
-        scoreCanvas.IngredientsChanged(true);
+        if (scoreCanvas)
+        {
+            scoreCanvas.IngredientsChanged(true);
+        }
     }
 
     private void CheckCombo()
@@ -152,7 +155,7 @@ public class ComboList : MonoBehaviour
                 int random = UnityEngine.Random.Range(0, ComboSounds.Count);
                 SoundEffectManager.Instance.CreateSoundEffect(ComboSounds[random]);
 
-                StartCoroutine(spawnSushi(1.0f, r));
+                StartCoroutine(spawnSushi(0.5f, r));
             }
         }
     }
@@ -174,20 +177,33 @@ public class ComboList : MonoBehaviour
 
     public void ResolveCombo()
     {
+        if (!scoreCanvas)
+        {
+            return;
+        }
+        //petal effect
+        if(CurrentComboMultiplier > 1)
+            finishedComboEffect.Play();
+
         //add combo points to currentPoints
         CurrentPoints += CurrentComboSum * CurrentComboMultiplier;
 
         CurrentComboSum = 0;
         CurrentComboMultiplier = 1;
 
-        //petal effect
-        finishedComboEffect.Play();
-
         //update list
         myComboList.Clear();
 
         //update score canvas
         scoreCanvas.IngredientsChanged(true);
+    }
+
+    public void EndLevel()
+    {
+        CurrentPoints += CurrentComboSum * CurrentComboMultiplier;
+
+        CurrentComboSum = 0;
+        CurrentComboMultiplier = 1;
     }
 
     public void OnGUI()
@@ -209,5 +225,7 @@ public class ComboList : MonoBehaviour
         RectTransform rt = sushi.GetComponent<RectTransform>();
         rt.localPosition = new Vector3(horizontalPos, 0, 0);
         rt.localScale = new Vector3(1, 1, 1);
+
+        yield return null;
     }
 }

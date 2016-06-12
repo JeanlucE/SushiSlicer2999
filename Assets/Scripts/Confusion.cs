@@ -16,6 +16,9 @@ public class Confusion : MonoBehaviour {
     private float rotation;
     private float starRotation;
 
+    private float currentSize = 0.0f;
+    private float currentSizeSpeed = 2.0f;
+
 	void Start ()
     {
         childs = new Transform[0];
@@ -40,7 +43,7 @@ public class Confusion : MonoBehaviour {
             {
                 Transform t = GameObject.Instantiate<Transform>(prefab);
                 t.parent = transform;
-                t.localScale = Vector3.one * size;
+                t.localScale = Vector3.zero;
                 t.localPosition = Quaternion.AngleAxis(wdelta * i, Vector3.forward) * position;
 
                 childs[i] = t;
@@ -53,11 +56,20 @@ public class Confusion : MonoBehaviour {
         rotation += 360 * rotationSpeed * Time.deltaTime;
         transform.localRotation = Quaternion.AngleAxis(rotation, Vector3.forward);
 
-        starRotation += 360 * starSpeed * Time.deltaTime;
+        Vector3 vscale = Vector3.one * currentSize;
+        currentSize += 8.0f * currentSizeSpeed * Time.deltaTime;
+        Mathf.SmoothDamp(currentSize, size, ref currentSizeSpeed, 0.2f, 10.0f, 0.1f * Time.deltaTime);
+
         Quaternion star = Quaternion.AngleAxis(starRotation, Vector3.forward);
+        //Debug.Log(childs);
         foreach (Transform t in childs)
         {
-            t.localRotation = star;
+            if (t)
+            {
+                t.localRotation = star;
+                t.localScale = vscale;
+                starRotation += 360 * starSpeed * Time.deltaTime;
+            }
         }
     }
 

@@ -6,7 +6,7 @@ public class AvocadoCore : MonoBehaviour {
     private float size;
     public float regrowSpeed = 25.0f;
 
-    private Coroutine cr;
+    private IEnumerator cr;
     public Animator animator;
 
     void Start()
@@ -14,7 +14,7 @@ public class AvocadoCore : MonoBehaviour {
         size = 1;
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         if (cr != null)
         {
@@ -24,7 +24,7 @@ public class AvocadoCore : MonoBehaviour {
 
     public void Regrow()
     {
-        cr = StartCoroutine(RegrowAnimation());
+        StartCoroutine(cr = RegrowAnimation());
     }
 
     IEnumerator RegrowAnimation()
@@ -64,6 +64,8 @@ public class AvocadoCore : MonoBehaviour {
 
         transform.localScale = Vector3.one;
         animator.speed = 1;
+
+        yield return null;
     }
 
     public bool FullyGrown()

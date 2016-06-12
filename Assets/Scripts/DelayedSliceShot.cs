@@ -7,7 +7,6 @@ public class DelayedSliceShot : MonoBehaviour {
 
 	void Start () {
         StartCoroutine(Shoot(this.delay));
-        Destroy(gameObject, this.delay + 0.2f);
 	}
 	
 	IEnumerator Shoot(float delay)
@@ -20,6 +19,8 @@ public class DelayedSliceShot : MonoBehaviour {
         SpriteSlicer.SliceAll(v1, v2);
 
         GetComponent<MeshRenderer>().material.color = Color.red;
+
+        Destroy(gameObject);
     }
 
 }
