@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     public List<AudioClip> SliceSounds = new List<AudioClip>();
     public List<AudioClip> SamuraiSounds = new List<AudioClip>();
+    public AudioClip knockClip;
 
     private SwordState swordState = SwordState.Sheathed;
     private float sliceStartTime;
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private float knockTorpor;
     private bool knockedOut;
 
+    private float slowdown = 1.0f;
+
     public bool IsKnockedOut
     {
         get { return knockedOut; }
@@ -56,15 +59,22 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Knock(float torporIncrease)
+    public void Knock(float torporIncrease, Vector2 knockback = new Vector2())
     {
         knockTorpor += torporIncrease;
+
+        rb.velocity += knockback;
+
+        if (knockClip)
+            SoundEffectManager.Instance.CreateSoundEffect(knockClip);
 
         if (!knockedOut && knockTorpor > 100)
         {
             //print(knockTorpor);
             knockedOut = true;
             animationControl.Knockout();
+
+            animationControl.SetSlice(false);
         }
     }
 
@@ -76,12 +86,26 @@ public class PlayerController : MonoBehaviour
             knockTorpor -= recoverSpeed * Time.deltaTime;
         }
 
+        animationControl.animator.speed = slowdown;
+
         if (knockedOut)
         {
+            rb.AddForce(-3.5f * rb.velocity);
+            if (rb.velocity.magnitude < 0.1f)
+            {
+                animationControl.SetRunning(false);
+                slowdown = 1.0f;
+            }
+            else
+            {
+                slowdown = rb.velocity.magnitude / MoveSpeed;
+            }
+
             if (knockTorpor < 20)
             {
                 knockedOut = false;
                 animationControl.RecoverKnockout();
+                slowdown = 1.0f;
             }
 
             animationControl.UpdateKnockout(knockTorpor / 100.0f);
@@ -101,8 +125,7 @@ public class PlayerController : MonoBehaviour
                         Vector2 sliceInput = new Vector2(xSliceInput, ySliceInput);
 
                         //transform.position += (Vector3)moveInput * MoveSpeed * Time.deltaTime;
-                        rb.velocity = (Vector3)moveInput * MoveSpeed;
-
+                        rb.velocity = (Vector3)moveInput * MoveSpeed * slowdown;
 
                         //Only rotate player if we have movementinput
                         if (moveInput.SqrMagnitude() > 0.3f * 0.3f)
