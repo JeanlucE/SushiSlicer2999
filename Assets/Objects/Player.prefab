@@ -394,7 +394,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.9}
+  m_LocalPosition: {x: 4, y: 3.3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473682}
@@ -975,10 +975,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comboColors:
   - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 0, g: 0.83448267, b: 1, a: 1}
-  - {r: 0.07586217, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.9724138, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0.028752442, b: 0.5955882, a: 1}
+  - {r: 0.05693123, g: 0.76056635, b: 0.8602941, a: 1}
+  - {r: 0, g: 0.9264706, b: 0.7347868, a: 1}
+  - {r: 0.19999993, g: 1, b: 0, a: 1}
+  - {r: 0.9448277, g: 1, b: 0, a: 1}
+  - {r: 0.85294116, g: 0.70276815, b: 0.07525954, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.9338235, g: 0.09612887, b: 0.73739856, a: 1}
+  - {r: 1, g: 0.72794116, b: 0.9362069, a: 1}
 --- !u!114 &11473030
 MonoBehaviour:
   m_ObjectHideFlags: 1
