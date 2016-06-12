@@ -10,6 +10,8 @@ GameObject:
   - 224: {fileID: 22437302}
   - 222: {fileID: 22244096}
   - 114: {fileID: 11475252}
+  - 111: {fileID: 11192516}
+  - 114: {fileID: 11498342}
   m_Layer: 5
   m_Name: Lachs Nigiri
   m_TagString: Untagged
@@ -17,6 +19,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!111 &11192516
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155446}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 52fc999bd10ab2748add0ea691cfcac0, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 52fc999bd10ab2748add0ea691cfcac0, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11475252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -44,6 +61,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11498342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e9b8280368ec8478e515e073a39a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &22244096
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -59,14 +87,13 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:

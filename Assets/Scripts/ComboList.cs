@@ -151,6 +151,8 @@ public class ComboList : MonoBehaviour
                 
                 int random = UnityEngine.Random.Range(0, ComboSounds.Count);
                 SoundEffectManager.Instance.CreateSoundEffect(ComboSounds[random]);
+
+                StartCoroutine(spawnSushi(1.0f, r));
             }
         }
     }
@@ -186,13 +188,26 @@ public class ComboList : MonoBehaviour
 
         //update score canvas
         scoreCanvas.IngredientsChanged(true);
-        Debug.Log("Combo resolved");
     }
 
     public void OnGUI()
     {
+        /*
         float timeToCombo = timeOfLastIngredient + ComboTime - Time.time;
         GUI.Label(new Rect(Screen.width - 100, 50, 100, 100), CurrentComboSum + " x " + CurrentComboMultiplier);
-        GUI.Label(new Rect(Screen.width - 100, 70, 100, 100), "Time to combo: " + timeToCombo);
+        GUI.Label(new Rect(Screen.width - 100, 70, 100, 100), "Time to combo: " + timeToCombo);*/
+    }
+
+    private IEnumerator spawnSushi(float delay, Recipe r)
+    {
+        yield return new WaitForSeconds(delay);
+
+        //spawn a jumping sushi
+        float horizontalPos = UnityEngine.Random.Range(-0.9f, 0.9f) * 800.0f;
+        GameObject sushi = Instantiate(r.ResultPrefab);
+        sushi.transform.SetParent(scoreCanvas.transform);
+        RectTransform rt = sushi.GetComponent<RectTransform>();
+        rt.localPosition = new Vector3(horizontalPos, 0, 0);
+        rt.localScale = new Vector3(1, 1, 1);
     }
 }
